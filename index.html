@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Francesco Chiariotti</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+   <nav class="home-corners" aria-label="Main navigation">
+    <a class="home-name" href="index.html">Francesco Chiariotti</a>
+    <a class="home-work" href="work-test.html">work</a>
+    <a class="home-info" href="info.html">info</a>
+    <span class="home-year">@2026</span>
+</nav>
+
+
+    <main>
+    <section class="hero">
+
+        <div class="home-trail" aria-hidden="true"></div>
+
+        <section class="intro">
+            
+
+            <div class="intro-content">
+                <p class="intro-title">
+                    <span class="intro-line">
+                        A <em>selection of projects</em> carried out during the past years
+                    </span>
+
+                    <span class="intro-line">
+                        while working for the Athens-based studio
+                        <a
+                            href="https://estoassociation.com/"
+                            class="intro-orange"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Esto Association</a> &amp;
+                    </span>
+
+                    <span class="intro-line intro-last-line">
+                        <span>Bologna-based studio Pausa Lab*.</span>
+
+                        <span class="intro-credits">
+                            <a
+                                href="https://www.instagram.com/marcomaldarella/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >Marco Maldarella</a><br>
+                            <a
+                                href="https://www.instagram.com/aggrovigliata/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >Giorgia Masina</a>
+                        </span>
+                    </span>
+                </p>
+            </div>
+        </section>
+
+    </section>
+</main>
+
+<script>
+(() => {
+    const container = document.querySelector(".home-trail");
+    if (!container) return;
+
+    const sources = [
+        "assets/444-studios/444-STUDIO-1.png",
+        "assets/dounias/dounias-logo-2.gif",
+        "assets/preview-kaos.mp4",
+        "assets/preview-oh-no.jpg",
+        "assets/thierry-video-3.mp4",
+        "assets/zavaii-hero.png",
+        "assets/damianidis-mockups-05.gif",
+        "assets/preview-esto.mp4"
+    ];
+
+    const interval = 1000; // 500 millisecondi = 0,5 secondi
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
+    let current = null;
+    let timer = null;
+
+    const items = sources.map((src) => {
+        const box = document.createElement("div");
+        box.className = "home-trail-item";
+
+        const isVideo = src.endsWith(".mp4");
+        const media = document.createElement(isVideo ? "video" : "img");
+        const item = { box, media, isVideo, ready: false };
+
+        const markReady = () => {
+            item.ready = true;
+
+            if (!current && !document.hidden) {
+                show(item);
+            }
+        };
+
+        if (isVideo) {
+            media.muted = true;
+            media.loop = true;
+            media.playsInline = true;
+            media.preload = "auto";
+            media.addEventListener("loadeddata", markReady, { once: true });
+        } else {
+            media.alt = "";
+            media.draggable = false;
+            media.addEventListener("load", markReady, { once: true });
+        }
+
+        media.addEventListener("error", () => {
+            item.ready = false;
+        });
+
+        media.src = src;
+        box.appendChild(media);
+        container.appendChild(box);
+
+        return item;
+    });
+
+    function show(item) {
+        if (current) {
+            current.box.classList.remove("is-active");
+
+            if (current.isVideo) {
+                current.media.pause();
+            }
+        }
+
+        current = item;
+        current.box.classList.add("is-active");
+
+        if (current.isVideo && !reducedMotion.matches) {
+            // Riprende dal punto in cui si era fermato.
+            current.media.play().catch(() => {});
+        }
+    }
+
+    function next() {
+        const readyItems = items.filter((item) => item.ready);
+        if (!readyItems.length) return;
+
+        const index = readyItems.indexOf(current);
+        const nextItem = readyItems[(index + 1) % readyItems.length];
+
+        if (nextItem !== current) show(nextItem);
+    }
+
+    function stop() {
+        window.clearInterval(timer);
+        timer = null;
+
+        if (current?.isVideo) {
+            current.media.pause();
+        }
+    }
+
+    function start() {
+        stop();
+
+        if (document.hidden || reducedMotion.matches) return;
+
+        if (current?.isVideo) {
+            current.media.play().catch(() => {});
+        }
+
+        timer = window.setInterval(next, interval);
+    }
+
+    document.addEventListener("visibilitychange", start);
+    reducedMotion.addEventListener("change", start);
+    window.addEventListener("pagehide", stop);
+    window.addEventListener("pageshow", start);
+
+    start();
+})();
+</script>
+
+</body>
+</html>

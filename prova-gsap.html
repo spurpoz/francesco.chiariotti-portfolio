@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prova GSAP</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #eeeeee;
+      font-family: Arial, sans-serif;
+    }
+
+    .quadrato {
+      width: 150px;
+      height: 150px;
+      background: #ff6c00;
+    }
+
+    main {
+  position: relative;
+  z-index: 2;
+}
+
+.anteprima {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.anteprima-img {
+  display: block;
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  opacity: 0;
+}
+  </style>
+</head>
+
+<body>
+    <main>
+  <h1 class="titolo">Selected works</h1>
+
+  <p class="progetto" data-image="assets/thierry-4-horizontal.png">
+    Thierry Colson
+  </p>
+
+  <p class="progetto" data-image="assets/damianidis mockups-05.png">
+    Damianidis
+  </p>
+</main>
+
+<div class="anteprima">
+  <img class="anteprima-img" alt="">
+</div>
+
+  <!-- Prima carichiamo la libreria -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+  <!-- Poi scriviamo la nostra animazione -->
+
+   <script>
+  // Comparsa iniziale dei testi
+  const sequenza = gsap.timeline();
+
+  sequenza.from(".titolo", {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.out"
+  });
+
+  sequenza.from(".progetto", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: "power2.out"
+  }, "-=0.3");
+
+  // Elementi da utilizzare
+  const progetti = document.querySelectorAll(".progetto");
+  const immagine = document.querySelector(".anteprima-img");
+  const anteprima = document.querySelector(".anteprima");
+
+let primaPosizione = true;
+
+document.addEventListener("mousemove", (evento) => {
+  const x = evento.clientX + 24;
+  const y = evento.clientY + 24;
+
+  if (primaPosizione) {
+    gsap.set(anteprima, { x, y });
+    primaPosizione = false;
+  } else {
+    gsap.to(anteprima, {
+      x,
+      y,
+      duration: 0.4,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+  }
+});
+
+  // Precarica le immagini
+  progetti.forEach((progetto) => {
+    const preload = new Image();
+    preload.src = progetto.dataset.image;
+  });
+
+  // Interazioni al passaggio del mouse
+  progetti.forEach((progetto) => {
+    const coloreOriginale = getComputedStyle(progetto).color;
+
+    progetto.addEventListener("mouseenter", () => {
+      // Legge il percorso scritto nel data-image
+      immagine.src = progetto.dataset.image;
+
+      gsap.to(progetto, {
+        x: 20,
+        color: "#ff6c00",
+        duration: 0.4,
+        overwrite: "auto"
+      });
+
+      gsap.fromTo(immagine,
+        {
+          opacity: 0,
+          y: 20,
+          scale: 0.95
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out",
+          overwrite: true
+        }
+      );
+    });
+
+    progetto.addEventListener("mouseleave", () => {
+      gsap.to(progetto, {
+        x: 0,
+        color: coloreOriginale,
+        duration: 0.4,
+        overwrite: "auto"
+      });
+
+      gsap.to(immagine, {
+        opacity: 0,
+        duration: 0.2,
+        overwrite: true
+      });
+    });
+  });
+</script>
+</body>
+</html>

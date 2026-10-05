@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thierry Colson — Test</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Stili esclusivi di questa pagina di prova -->
+<style>
+    body.thierry-test {
+        margin: 0;
+        height: 100svh;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    /* NAVIGAZIONE AI QUATTRO ANGOLI */
+
+    .test-corners {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        pointer-events: none;
+
+        color: #fff;
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: -0.3px;
+        text-shadow: 0 1px 4px rgb(0 0 0 / 60%);
+    }
+
+    .test-corners a,
+    .test-corners span {
+        position: absolute;
+    }
+
+    .test-corners a {
+        pointer-events: auto;
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .test-corners a:hover {
+        color: #FF6C00;
+    }
+
+    .corner-name {
+        top: 20px;
+        left: 16px;
+    }
+
+    .corner-work {
+        top: 20px;
+        right: 16px;
+    }
+
+    .corner-info {
+        bottom: 20px;
+        left: 16px;
+    }
+
+    .corner-year {
+        bottom: 20px;
+        right: 16px;
+    }
+
+    /* CINQUE COLONNE AL CENTRO DELLA VIEWPORT */
+
+    .test-header {
+        position: fixed;
+        top: 30%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: 20;
+
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 16px;
+
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+        justify-content: space-between;
+        column-gap: 20px;
+        align-items: baseline;
+
+        color: #fff;
+        pointer-events: none;
+        text-shadow: 0 1px 4px rgb(0 0 0 / 60%);
+    }
+
+    .test-header h1,
+    .test-header p,
+    .test-header .test-meta {
+        margin: 0;
+        min-width: 0;
+
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.3;
+        letter-spacing: -0.3px;
+    }
+
+    .test-header .test-meta {
+        font-family: "PPEiko", serif;
+        font-style: italic;
+        font-weight: 300;
+    }
+
+    .test-header > p:last-child {
+        text-align: right;
+    }
+
+    .test-header a {
+        pointer-events: auto;
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .test-header a:hover {
+        color: #FF6C00;
+    }
+
+    /* SCROLL A SCHERMATE */
+
+    .test-slides {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+
+        width: 100%;
+        height: 100svh;
+        margin: 0;
+        padding: 0;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        scroll-snap-type: y mandatory;
+        overscroll-behavior-y: contain;
+        scrollbar-width: none;
+
+        background: #181818;
+    }
+
+    .test-slides::-webkit-scrollbar {
+        display: none;
+    }
+
+    .test-slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        overflow: hidden;
+        isolation: isolate;
+
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    /* IMMAGINI E VIDEO: STESSE DIMENSIONI */
+
+    .test-slide > img,
+    .test-slide > video {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+
+        object-fit: cover;
+        object-position: center;
+
+        transform: scale(1.045);
+        transition:
+            transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .test-slide.is-active > img,
+    .test-slide.is-active > video {
+        transform: scale(1);
+    }
+
+    /* SFUMATURA SOPRA LE IMMAGINI */
+
+    .test-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+
+        background: linear-gradient(
+            to bottom,
+            rgb(0 0 0 / 42%) 0%,
+            transparent 35%,
+            transparent 50%,
+            rgb(0 0 0 / 65%) 100%
+        );
+    }
+
+    /* DESCRIZIONI DELLE SLIDE */
+
+    .test-caption {
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        z-index: 2;
+
+        box-sizing: border-box;
+        width: min(900px, calc(100% - 48px));
+        padding: 16px 20px;
+
+        color: #fff;
+        text-align: center;
+
+        opacity: 0;
+        transform: translate(-50%, 22px);
+
+        transition:
+            opacity 0.65s ease,
+            transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .test-slide.is-active .test-caption {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    .test-caption p {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 1.35;
+        letter-spacing: -0.5px;
+    }
+
+    .test-caption p + p {
+        margin-top: 16px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+        .test-header {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            column-gap: 8px;
+        }
+
+        .test-header h1,
+        .test-header p,
+        .test-header .test-meta {
+            overflow-wrap: anywhere;
+        }
+
+        .test-caption {
+            width: calc(100% - 32px);
+            padding: 12px 16px;
+        }
+    }
+
+    /* MOVIMENTO RIDOTTO */
+
+    @media (prefers-reduced-motion: reduce) {
+        .test-slide > img,
+        .test-slide > video,
+        .test-caption {
+            transition: none;
+        }
+
+        .test-slide > img,
+        .test-slide > video {
+            transform: none;
+        }
+    }
+</style>
+</head>
+
+<body class="thierry-test">
+
+    <nav class="test-corners" aria-label="Main navigation">
+    <a class="corner-name" href="index.html">Francesco Chiariotti</a>
+    <a class="corner-work" href="work.html">work</a>
+    <a class="corner-info" href="info.html">info</a>
+    <span class="corner-year">@2026</span>
+</nav>
+
+    <header class="test-header">
+    <h1>Thierry Colson</h1>
+
+    <div class="test-meta">branding / website</div>
+
+    <div class="test-meta">2026</div>
+
+    <p>
+        visit:
+        <a
+            href="https://thierrycolson.com"
+            target="_blank"
+            rel="noopener noreferrer"
+        >thierrycolson.com</a>
+    </p>
+
+    <p>creative direction: Esto Assosiation</p>
+</header>
+
+    <main
+        class="test-slides"
+        tabindex="0"
+        aria-label="Thierry Colson project images"
+    >
+
+        <section class="test-slide is-active" aria-label="Project overview">
+            <video autoplay muted loop playsinline preload="auto">
+    <source src="assets/thierry-video-3.mp4" type="video/mp4">
+</video>
+
+            <div class="test-caption">
+                <p>
+                    Thierry Colson is a French luxury fashion house
+                    rooted in a distinctive visual language of Art Nouveau,
+                    Baroque references and auteur cinema.
+                </p>
+            </div>
+        </section>
+
+        <section class="test-slide" aria-label="Thierry Colson recording 1">
+    <video autoplay muted loop playsinline preload="metadata">
+        <source src="assets/rec-1-1.mp4" type="video/mp4">
+    </video>
+</section>
+
+        <section class="test-slide" aria-label="Digital experience">
+            <img
+                src="assets/preview-thierry.jpg"
+                alt="Thierry Colson website"
+            >
+
+            <div class="test-caption">
+                <p>
+                    The new digital experience was conceived somewhere
+                    between a fashion magazine and an e-commerce platform.
+                </p>
+            </div>
+        </section>
+
+        <section class="test-slide" aria-label="Interface design">
+            <img
+                src="assets/thierry-3.jpg"
+                alt="Details of the Thierry Colson project"
+            >
+
+            <div class="test-caption">
+                <p>
+                    Minimal architecture, oversized typography and
+                    full-bleed imagery create a sense of visual immediacy.
+                </p>
+
+                <p>
+                    Every element of the interface was designed and
+                    developed as part of a bespoke system. From the
+                    image-led navigation and interactive typography
+                    to the animated feline Easter egg, the experience
+                    is built around small moments of discovery.
+                </p>
+            </div>
+        </section>
+
+        <section class="test-slide" aria-label="Project outcome">
+            <img
+                src="assets/thierry-4-horizontal.png"
+                alt="Thierry Colson final project presentation"
+            >
+
+            <div class="test-caption">
+                <p>
+                    The project demanded a high level of precision within
+                    a tight timeframe and against ambitious client expectations.
+                </p>
+
+                <p>
+                    The result is a digital environment that brings
+                    Thierry Colson’s distinctive universe into a contemporary,
+                    immersive and highly considered space.
+                </p>
+            </div>
+        </section>
+
+        <section class="test-slide" aria-label="Thierry Colson recording 2">
+    <video autoplay muted loop playsinline preload="metadata">
+        <source src="assets/rec-2-1.mp4" type="video/mp4">
+    </video>
+</section>
+
+    </main>
+
+    <script>
+        const scrollContainer = document.querySelector(".test-slides");
+        const slides = document.querySelectorAll(".test-slide");
+
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle(
+                        "is-active",
+                        entry.isIntersecting && entry.intersectionRatio >= 0.55
+                    );
+                });
+            },
+            {
+                root: scrollContainer,
+                threshold: [0, 0.55, 1]
+            }
+        );
+
+        slides.forEach(slide => observer.observe(slide));
+    </script>
+
+</body>
+</html>

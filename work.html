@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Work — Francesco Chiariotti</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+        <div class="navbar-content">
+
+            <a href="index.html" class="name">
+                Francesco Chiariotti
+            </a>
+
+            <nav>
+                <a href="work.html">work</a>
+                <a href="info.html">info</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+<!-- WORK LIST -->
+
+<main class="work-list">
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-thierry.jpg">
+            <a href="thierry-colson.html" class="project-name">Thierry Colson</a>
+            <span class="project-type">branding / website</span>
+            <span class="project-year">2026</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-damianidis.mp4">
+            <a href="damianidis.html" class="project-name">Damianidis Divani</a>
+            <span class="project-type">branding / website</span>
+            <span class="project-year">2026</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-esto.mp4">
+            <span class="project-name">Esto Association</span>
+            <span class="project-type">website interaction</span>
+            <span class="project-year">2026</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-dounias.jpg">
+            <span class="project-name">Dounias</span>
+            <span class="project-type">branding / website</span>
+            <span class="project-year">2026</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-zavaii.png">
+            <span class="project-name">Zavaii</span>
+            <span class="project-type">branding / website / social media</span>
+            <span class="project-year">2024</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-444.jpg">
+            <span class="project-name">444 Studio</span>
+            <span class="project-type">website</span>
+            <span class="project-year">2024</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-kaos.mp4">
+            <span class="project-name">Kaos Agency</span>
+            <span class="project-type">rebranding / social media / video editing</span>
+            <span class="project-year">2024</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-row" data-preview="preview-oh-no.jpg">
+            <span class="project-name">O/H - No Contact</span>
+            <span class="project-type">layout / cover / poster</span>
+            <span class="project-year">2024</span>
+        </div>
+        <div class="project-media">
+            <div class="project-media-inner"></div>
+        </div>
+    </div>
+
+</main>
+
+
+<script>
+    const items = document.querySelectorAll(".project-item");
+    let activeItem = null;
+
+    const randomBetween = (min, max) =>
+        min + Math.random() * Math.max(0, max - min);
+
+    function hidePreview(item) {
+        item.classList.remove("is-previewing");
+
+        const video = item.querySelector("video");
+        if (video) video.pause();
+
+        if (activeItem === item) activeItem = null;
+    }
+
+    function positionPreview(item) {
+        const row = item.querySelector(".project-row");
+        const media = item.querySelector(".project-media");
+        const bounds = row.getBoundingClientRect();
+
+        const margin = 16;
+        const navbarBottom =
+            document.querySelector(".navbar").getBoundingClientRect().bottom;
+
+        const availableHeight = Math.max(
+            1,
+            window.innerHeight - navbarBottom - margin * 2
+        );
+
+        // L’anteprima supera leggermente l’altezza della riga.
+        media.style.setProperty(
+            "--preview-height",
+            `${Math.min(bounds.height * 1.95, availableHeight)}px`
+        );
+
+        const preview = media.getBoundingClientRect();
+
+        // Posizione casuale lungo tutta la larghezza disponibile.
+        const x = randomBetween(
+            margin,
+            window.innerWidth - preview.width - margin
+        );
+
+        // Centro vicino a quello della riga, con una piccola variazione.
+        const offsetY = randomBetween(
+            -bounds.height * 0.15,
+            bounds.height * 0.15
+        );
+
+        const desiredY =
+            bounds.top + (bounds.height - preview.height) / 2 + offsetY;
+
+        // Mantiene l’anteprima sotto la navbar e dentro la viewport.
+        const y = Math.max(
+            navbarBottom + margin,
+            Math.min(
+                desiredY,
+                window.innerHeight - preview.height - margin
+            )
+        );
+
+        media.style.left = `${x}px`;
+        media.style.top = `${y}px`;
+    }
+
+    items.forEach(item => {
+        const row = item.querySelector(".project-row");
+        const name = item.querySelector(".project-name");
+        const inner = item.querySelector(".project-media-inner");
+
+        const file = row.dataset.preview;
+        const isVideo = file.split(".").pop().toLowerCase() === "mp4";
+
+        let asset = null;
+        let ready = false;
+
+        // Consente di mostrare l’anteprima anche con la tastiera.
+        name.tabIndex = 0;
+
+        function reveal() {
+            if (!ready || activeItem !== item) return;
+
+            positionPreview(item);
+            item.classList.add("is-previewing");
+
+            if (isVideo) {
+                asset.play().catch(() => {});
+            }
+        }
+
+        function showPreview() {
+            if (activeItem === item) return;
+            if (activeItem) hidePreview(activeItem);
+
+            activeItem = item;
+
+            if (!asset) {
+                asset = document.createElement(isVideo ? "video" : "img");
+
+                if (isVideo) {
+                    asset.muted = true;
+                    asset.loop = true;
+                    asset.playsInline = true;
+                    asset.preload = "auto";
+                } else {
+                    asset.alt = name.textContent.trim();
+                }
+
+                asset.addEventListener(
+                    isVideo ? "loadeddata" : "load",
+                    () => {
+                        ready = true;
+                        reveal();
+                    },
+                    { once: true }
+                );
+
+                asset.src = "assets/" + file;
+                inner.appendChild(asset);
+            }
+
+            reveal();
+        }
+
+        name.addEventListener("pointerenter", event => {
+            if (event.pointerType !== "touch") showPreview();
+        });
+
+        name.addEventListener("pointerleave", () => hidePreview(item));
+        name.addEventListener("focus", showPreview);
+        name.addEventListener("blur", () => hidePreview(item));
+    });
+
+    window.addEventListener("resize", () => {
+        if (activeItem?.classList.contains("is-previewing")) {
+            positionPreview(activeItem);
+        }
+    });
+</script>
+
+</body>
+</html>
