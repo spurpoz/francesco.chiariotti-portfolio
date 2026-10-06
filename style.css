@@ -171,6 +171,10 @@ a {
     opacity: 1;
 }
 
+.intro-mobile {
+    display: none;
+}
+
 @media (max-width: 700px) {
     .go-to {
         width: 320px;
@@ -389,12 +393,73 @@ body:has(.hero) {
     height: 100svh;
 }
 
-    .intro {
-        min-height: 165px;
-        height: 165px;
+.hero .home-trail-item {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+}
 
-        padding: 12px;
-    }
+.hero .home-trail-item img,
+.hero .home-trail-item video {
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero .intro {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 24px 16px;
+
+    display: block;
+    background: #fff;
+    color: #4B4B4B;
+    text-shadow: none;
+}
+
+.hero .intro-content {
+    display: block;
+    width: 100%;
+}
+
+.hero .intro-desktop {
+    display: none;
+}
+
+.hero .intro-mobile {
+    display: block;
+}
+
+.hero .intro-mobile .intro-title {
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+.hero .intro-mobile .intro-credits {
+    margin-top: 14px;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: -0.3px;
+}
+
+.hero .intro-mobile .intro-last-line {
+    display: flex;
+    align-items: last baseline;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.hero .intro-mobile .intro-last-line > span:first-child {
+    white-space: normal;
+}
 
 
     /* WORK */

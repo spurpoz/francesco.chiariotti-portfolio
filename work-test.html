@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"
         rel="stylesheet"
     >
 
@@ -327,6 +327,10 @@
             }
         }
     </style>
+
+    <link rel="stylesheet" href="mobile-menu.css">
+    <script src="mobile-menu.js" defer></script>
+    
 </head>
 
 <body>
@@ -344,6 +348,37 @@
 
         <span class="corner-year">@2026</span>
     </nav>
+<button
+    class="mobile-menu-toggle"
+    type="button"
+    aria-label="Apri menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+>
+    <span></span>
+    <span></span>
+</button>
+
+<div
+    class="mobile-menu"
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigazione"
+    inert
+>
+    <div class="mobile-menu-content">
+        <nav class="mobile-menu-links" aria-label="Mobile navigation">
+            <a href="work-test.html">work</a>
+            <a href="info.html">info</a>
+        </nav>
+    </div>
+
+    <div class="mobile-menu-footer">
+        <span>Portfolio</span>
+        <span>@2026</span>
+    </div>
+</div>
 
     <main
         class="work-slides"

@@ -314,6 +314,10 @@
 }
 
     </style>
+
+    <link rel="stylesheet" href="mobile-menu.css">
+    <script src="mobile-menu.js" defer></script>
+    
 </head>
 
 <body>
@@ -377,6 +381,38 @@
 
         <span class="corner-year">@2026</span>
     </nav>
+
+    <button
+    class="mobile-menu-toggle"
+    type="button"
+    aria-label="Apri menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+>
+    <span></span>
+    <span></span>
+</button>
+
+<div
+    class="mobile-menu"
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigazione"
+    inert
+>
+    <div class="mobile-menu-content">
+        <nav class="mobile-menu-links" aria-label="Mobile navigation">
+            <a href="work-test.html">work</a>
+            <a href="info.html" aria-current="page">info</a>
+        </nav>
+    </div>
+
+    <div class="mobile-menu-footer">
+        <span>Portfolio</span>
+        <span>@2026</span>
+    </div>
+</div>
 
     <main class="info-page">
 

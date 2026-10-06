@@ -8,9 +8,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-menu.css">
+    <script src="mobile-menu.js" defer></script>
 </head>
 
 <body>
@@ -22,6 +24,37 @@
     <span class="home-year">@2026</span>
 </nav>
 
+<button
+    class="mobile-menu-toggle"
+    type="button"
+    aria-label="Apri menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+>
+    <span></span>
+    <span></span>
+</button>
+
+<div
+    class="mobile-menu"
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigazione"
+    inert
+>
+    <div class="mobile-menu-content">
+    <nav class="mobile-menu-links" aria-label="Mobile navigation">
+        <a href="work-test.html">work</a>
+        <a href="info.html">info</a>
+    </nav>
+</div>
+
+<div class="mobile-menu-footer">
+    <span>Portfolio</span>
+    <span>@2026</span>
+</div>
+</div>
 
     <main>
     <section class="hero">
@@ -32,39 +65,73 @@
             
 
             <div class="intro-content">
-                <p class="intro-title">
-                    <span class="intro-line">
-                        A <em>selection of projects</em> carried out during the past years
-                    </span>
+    <!-- TESTO DESKTOP -->
+    <p class="intro-title intro-desktop">
+        <span class="intro-line">
+            A <em>selection of projects</em> carried out during the past years
+        </span>
 
-                    <span class="intro-line">
-                        while working for the Athens-based studio
-                        <a
-                            href="https://estoassociation.com/"
-                            class="intro-orange"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >Esto Association</a> &amp;
-                    </span>
+        <span class="intro-line">
+            while working for the Athens-based studio
+            <a
+                href="https://estoassociation.com/"
+                class="intro-orange"
+                target="_blank"
+                rel="noopener noreferrer"
+            >Esto Association</a> &amp;
+        </span>
 
-                    <span class="intro-line intro-last-line">
-                        <span>Bologna-based studio Pausa Lab*.</span>
+        <span class="intro-line intro-last-line">
+            <span>Bologna-based studio Pausa Lab*.</span>
 
-                        <span class="intro-credits">
-                            <a
-                                href="https://www.instagram.com/marcomaldarella/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >Marco Maldarella</a><br>
-                            <a
-                                href="https://www.instagram.com/aggrovigliata/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >Giorgia Masina</a>
-                        </span>
-                    </span>
-                </p>
-            </div>
+            <span class="intro-credits">
+                <a
+                    href="https://www.instagram.com/marcomaldarella/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Marco Maldarella</a><br>
+                <a
+                    href="https://www.instagram.com/aggrovigliata/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Giorgia Masina</a>
+            </span>
+        </span>
+    </p>
+
+    <!-- TESTO MOBILE: modifica gli a capo qui -->
+    <div class="intro-mobile">
+    <p class="intro-title">
+        A <em>selection of projects</em><br>
+        carried out during the past years<br>
+        while working for the Athens-based<br>
+        studio
+        <a
+            href="https://estoassociation.com/"
+            class="intro-orange"
+            target="_blank"
+            rel="noopener noreferrer"
+        >Esto Association</a> &amp;<br>
+
+        <span class="intro-last-line">
+            <span>Bologna-based studio Pausa Lab*.</span>
+
+            <span class="intro-credits">
+                <a
+                    href="https://www.instagram.com/marcomaldarella/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Marco Maldarella</a><br>
+                <a
+                    href="https://www.instagram.com/aggrovigliata/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Giorgia Masina</a>
+            </span>
+        </span>
+    </p>
+</div>
+</div>
         </section>
 
     </section>
