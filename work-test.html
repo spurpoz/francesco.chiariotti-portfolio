@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Work — Francesco Chiariotti</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"
         rel="stylesheet"
     >
-
     <style>
         @font-face {
             font-family: "PPEiko";
@@ -21,11 +18,9 @@
             font-style: italic;
             font-display: swap;
         }
-
         * {
             box-sizing: border-box;
         }
-
         html,
         body {
             width: 100%;
@@ -33,7 +28,6 @@
             margin: 0;
             overflow: hidden;
         }
-
         body {
             font-family: "Inter", sans-serif;
             font-size: 12px;
@@ -43,20 +37,16 @@
             color: #fff;
             background: #181818;
         }
-
         a {
             color: inherit;
             text-decoration: none;
             transition: color 0.2s ease;
         }
-
         a:hover,
         a:focus-visible {
             color: #FF6C00;
         }
-
         /* NAVIGAZIONE AI QUATTRO ANGOLI */
-
         .corners {
             position: fixed;
             inset: 0;
@@ -64,223 +54,172 @@
             pointer-events: none;
             text-shadow: 0 1px 4px rgb(0 0 0 / 60%);
         }
-
         .corners a,
         .corners span {
             position: absolute;
         }
-
         .corners a {
             pointer-events: auto;
         }
-
         .corner-name {
             top: 20px;
             left: 16px;
         }
-
         .corner-work {
             top: 20px;
             right: 16px;
         }
-
         .corner-info {
             bottom: 20px;
             left: 16px;
         }
-
         .corner-year {
             bottom: 20px;
             right: 16px;
         }
-
         /* SCROLL A SCHERMATE */
-
         .work-slides {
             position: fixed;
             inset: 0;
             height: 100svh;
-
             overflow-y: auto;
             overflow-x: hidden;
-
             scroll-snap-type: y mandatory;
             overscroll-behavior-y: contain;
             scrollbar-width: none;
         }
-
         .work-slides::-webkit-scrollbar {
             display: none;
         }
-
         .work-slide {
             position: relative;
             width: 100%;
             height: 100%;
-
             overflow: hidden;
             isolation: isolate;
-
             scroll-snap-align: start;
             scroll-snap-stop: always;
-
             background: #181818;
         }
-
         .project-slide-link {
     position: absolute;
     inset: 0;
     z-index: 3;
 }
-
 .project-slide-link:focus-visible {
     outline: 2px solid #FF6C00;
     outline-offset: -4px;
 }
-
         /* SFONDI */
-
         .project-background {
             position: absolute;
             inset: 0;
             z-index: 0;
-
             display: block;
             width: 100%;
             height: 100%;
-
             object-fit: cover;
             object-position: center;
-
             transform: scale(1.12);
             transition:
                 transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
-
         /* OSCURAMENTO DEL 10% */
-
         .work-slide::after {
             content: "";
             position: absolute;
             inset: 0;
             z-index: 1;
-
             background: #000;
             opacity: 0;
             pointer-events: none;
-
             transition: opacity 0.4s ease;
         }
-
         @media (hover: hover) {
             .work-slide:hover .project-background {
                 transform: scale(1);
             }
-
             .work-slide:hover::after {
                 opacity: 0.2;
             }
         }
-
         .work-slide:focus-within .project-background {
             transform: scale(1);
         }
-
         .work-slide:focus-within::after {
             opacity: 0.2;
         }
-
         /* CINQUE INFORMAZIONI SOVRAPPOSTE */
-
         .project-details {
             position: absolute;
             top: 50%;
             left: 0;
             z-index: 4;
             pointer-events: none;
-
             width: 100%;
             padding: 0 16px;
-
             display: grid;
             grid-template-columns: repeat(5, auto);
             justify-content: space-between;
             align-items: baseline;
             column-gap: 20px;
-
             transform: translateY(-50%);
             text-shadow: 0 1px 4px rgb(0 0 0 / 60%);
         }
-
         .project-details h2,
         .project-details p {
             min-width: 0;
             margin: 0;
-
             font-size: 12px;
             font-weight: 400;
             line-height: 1.3;
             letter-spacing: -0.3px;
         }
-
         .project-details .project-field,
         .project-details .project-year {
             font-family: "PPEiko", serif;
             font-style: italic;
             font-weight: 300;
         }
-
         .project-direction {
             text-align: right;
         }
-
         .project-details a:focus-visible {
             outline: 1px solid currentColor;
             outline-offset: 5px;
         }
-
         /* INTRODUZIONI */
-
         .project-caption {
             position: absolute;
             bottom: 20%;
             left: 50%;
             z-index: 2;
             pointer-events: none;
-
             width: min(900px, calc(100% - 48px));
             padding: 16px 20px;
             text-shadow: 0 1px 4px rgb(0 0 0 / 60%);
-
             text-align: center;
             opacity: 0;
             transform: translate(-50%, 20px);
-
             transition:
                 opacity 0.6s ease,
                 transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
-
         .project-caption p {
             margin: 0;
-
             font-size: 17px;
             font-weight: 400;
             line-height: 1.35;
             letter-spacing: -0.5px;
         }
-
         .work-slide.is-active .project-caption {
             opacity: 1;
             transform: translate(-50%, 0);
         }
-
         .project-details a {
         pointer-events: auto;
         }
-
         /* MOBILE */
-
         @media (max-width: 700px) {
             .project-details {
                 column-gap: 8px;
@@ -291,61 +230,47 @@
                     minmax(0, 1fr)
                     minmax(0, 1.2fr);
             }
-
             .project-details h2,
             .project-details p {
                 overflow-wrap: anywhere;
             }
-
             .project-caption {
                 width: calc(100% - 32px);
                 padding: 12px 16px;
             }
         }
-
         /* SUI TOUCHSCREEN LA SLIDE ATTIVA SI SCURISCE */
-
         @media (hover: none) {
             .work-slide.is-active .project-background {
                 transform: scale(1);
             }
-
             .work-slide.is-active::after {
                 opacity: 0.2;
             }
         }
-
         @media (prefers-reduced-motion: reduce) {
             .project-background,
             .project-caption,
             .work-slide::after {
                 transition: none;
             }
-
             .project-background {
                 transform: none;
             }
         }
     </style>
-
     <link rel="stylesheet" href="mobile-menu.css">
     <script src="mobile-menu.js" defer></script>
-    
 </head>
-
 <body>
-
     <nav class="corners" aria-label="Main navigation">
         <a class="corner-name" href="index.html">
             Francesco Chiariotti
         </a>
-
         <a class="corner-work" href="work-test.html" aria-current="page">
             work
         </a>
-
         <a class="corner-info" href="info.html">info</a>
-
         <span class="corner-year">@2026</span>
     </nav>
 <button
@@ -358,7 +283,6 @@
     <span></span>
     <span></span>
 </button>
-
 <div
     class="mobile-menu"
     id="mobile-menu"
@@ -373,29 +297,23 @@
             <a href="info.html">info</a>
         </nav>
     </div>
-
     <div class="mobile-menu-footer">
         <span>Portfolio</span>
         <span>@2026</span>
     </div>
 </div>
-
     <main
         class="work-slides"
         tabindex="0"
         aria-label="Selected projects"
     >
-
         <!-- THIERRY COLSON -->
-
         <section class="work-slide is-active" aria-labelledby="title-thierry">
-
             <a
     class="project-slide-link"
     href="thierry-colson-split-test.html"
     aria-label="Apri il progetto Thierry Colson"
 ></a>
-            
             <video
                 class="project-background"
                 muted
@@ -410,17 +328,14 @@
                     type="video/mp4"
                 >
             </video>
-
             <div class="project-details">
                 <h2 id="title-thierry">
                     <a href="thierry-colson-split-test.html">
                         Thierry Colson
                     </a>
                 </h2>
-
                 <p class="project-field">branding / website</p>
                 <p class="project-year">2026</p>
-
                 <p>
                     visit:
                     <a
@@ -429,12 +344,10 @@
                         rel="noopener noreferrer"
                     >thierrycolson.com</a>
                 </p>
-
                 <p class="project-direction">
                     creative direction: Esto Assosiation
                 </p>
             </div>
-
             <div class="project-caption">
                 <p>
                     Thierry Colson is a French luxury fashion house
@@ -443,17 +356,13 @@
                 </p>
             </div>
         </section>
-
         <!-- DAMIANIDIS -->
-
         <section class="work-slide" aria-labelledby="title-damianidis">
-
             <a
     class="project-slide-link"
     href="damianidis-split-test.html"
     aria-label="Apri il progetto Damianidis"
 ></a>
-            
             <img
     class="project-background"
     src="assets/damianidis-mockups-05.gif"
@@ -466,10 +375,8 @@
                         Damianidis
                     </a>
                 </h2>
-
                 <p class="project-field">branding / website</p>
                 <p class="project-year">2026</p>
-
                 <p>
                     visit:
                     <a
@@ -478,12 +385,10 @@
                         rel="noopener noreferrer"
                     >damianidis.co</a>
                 </p>
-
                 <p class="project-direction">
                     creative direction: Esto Assosiation
                 </p>
             </div>
-
             <div class="project-caption">
                 <p>
                     Damianidis is an Athens-based furniture retailer
@@ -491,9 +396,7 @@
                 </p>
             </div>
         </section>
-
         <!-- ESTO ASSOCIATION -->
-
         <section class="work-slide" aria-labelledby="title-esto">
             <video
                 class="project-background"
@@ -508,13 +411,10 @@
                     type="video/mp4"
                 >
             </video>
-
             <div class="project-details">
                 <h2 id="title-esto">Esto Association</h2>
-
                 <p class="project-field">website interaction</p>
                 <p class="project-year">2026</p>
-
                 <p>
                     visit:
                     <a
@@ -523,27 +423,21 @@
                         rel="noopener noreferrer"
                     >estoassociation.com</a>
                 </p>
-
                 <p class="project-direction">creative direction: myself</p>
             </div>
-
             <div class="project-caption">
                 <p>
                     Website interactions I created for Esto Association’s website.
                 </p>
             </div>
         </section>
-
         <!-- DOUNIAS -->
-
         <section class="work-slide" aria-labelledby="title-dounias">
-            
             <a
             class="project-slide-link"
             href="dounias.html"
             aria-label="Apri il progetto Dounias"
                 ></a>
-
             <img
                 class="project-background"
                 src="assets/dounias/dounias-logo-2.gif"
@@ -551,12 +445,10 @@
                 loading="lazy"
                 decoding="async"
             >
-
             <div class="project-details">
                 <h2 id="title-dounias">
                     <a href="dounias.html">Dounias</a>
                  </h2>
-
                 <p class="project-field">branding / website</p>
                 <p class="project-year">2026</p>
                 <p>
@@ -569,7 +461,6 @@
                 </p>
                 <p class="project-direction">creative direction: Esto Association</p>
             </div>
-
             <div class="project-caption">
                 <p>
                     Dounias is a Greek-Palestinian non-profit organisation
@@ -578,17 +469,29 @@
                 </p>
             </div>
         </section>
-
+        <!-- DISORIENTED KITCHEN -->
+        <section class="work-slide" aria-labelledby="title-disoriented-kitchen">
+            <a class="project-slide-link" href="disoriented-kitchen.html" aria-label="Apri il progetto Disoriented Kitchen"></a>
+            <picture>
+                <source media="(max-width: 700px)" srcset="assets/disoriented-kitchen/logo-mobile.gif">
+                <img class="project-background" src="assets/disoriented-kitchen/logo.gif" alt="Disoriented Kitchen animated logo" loading="lazy" decoding="async">
+            </picture>
+            <div class="project-details">
+                <h2 id="title-disoriented-kitchen"><a href="disoriented-kitchen.html">Disoriented Kitchen</a></h2>
+                <p class="project-field">Branding</p>
+                <p class="project-year">2025</p>
+                <p>visit: -</p>
+                <p class="project-direction">creative direction: myself</p>
+            </div>
+            <div class="project-caption"><p>Disoriented Kitchen began as an idea shared by three women based in Rome: a home kitchen concept bringing together Egyptian, Greek and Italian influences. The seasonings are olive oil, parsley and decolonisation.</p></div>
+        </section>
         <!-- ZAVAII -->
-
         <section class="work-slide" aria-labelledby="title-zavaii">
-        
             <a
     class="project-slide-link"
     href="zavaii.html"
     aria-label="Apri il progetto Zavaii"
 ></a>
-
             <img
                 class="project-background"
                 src="assets/zavaii-hero.png"
@@ -596,16 +499,13 @@
                 loading="lazy"
                 decoding="async"
             >
-
             <div class="project-details">
                 <h2 id="title-zavaii">
                 <a href="zavaii.html">Zavaii</a>
                 </h2>
-
                 <p class="project-field">
                     branding / website / social media
                 </p>
-
                 <p class="project-year">2024</p>
                 <p>
                     visit:
@@ -617,7 +517,6 @@
                 </p>
                 <p class="project-direction">creative direction: Pausa Lab</p>
             </div>
-
             <div class="project-caption">
                 <p>
                     Zavaii is a special surfboard lock that hooks on
@@ -625,17 +524,13 @@
                 </p>
             </div>
         </section>
-
         <!-- 444 STUDIO -->
-
         <section class="work-slide" aria-labelledby="title-444">
-
         <a
             class="project-slide-link"
             href="444-studios.html"
             aria-label="Apri il progetto 444 Studios"
         ></a>
-
             <video
                 class="project-background"
                 muted
@@ -649,12 +544,10 @@
                     type="video/mp4"
                 >
             </video>
-
             <div class="project-details">
                 <h2 id="title-444">
                 <a href="444-studios.html">444 Studios</a>
                 </h2>
-
                 <p class="project-field">website</p>
                 <p class="project-year">2024</p>
                 <p>
@@ -665,12 +558,10 @@
         rel="noopener noreferrer"
     >444studios.art</a>
 </p>
-
 <p class="project-direction">
     creative direction: Pausa Lab
 </p>
             </div>
-
             <div class="project-caption">
                 <p>
                     444 is a creative collective of directors, designers,
@@ -679,9 +570,7 @@
                 </p>
             </div>
         </section>
-
         <!-- KAOS AGENCY -->
-
         <section class="work-slide" aria-labelledby="title-kaos">
             <a
     class="project-slide-link"
@@ -701,14 +590,11 @@
                     type="video/mp4"
                 >
             </video>
-
             <div class="project-details">
                 <h2 id="title-kaos">Kaos Agency</h2>
-
                 <p class="project-field">
                     rebranding / social media / video editing
                 </p>
-
                 <p class="project-year">2024</p>
                 <p>
                     visit:
@@ -720,7 +606,6 @@
                 </p>
                 <p class="project-direction">creative direction: Pausa Lab</p>
             </div>
-
             <div class="project-caption">
                 <p>
                     Kaos is a music agency based in Italy and Berlin,
@@ -728,9 +613,7 @@
                 </p>
             </div>
         </section>
-
         <!-- O/H — NO CONTACT -->
-
         <section class="work-slide" aria-labelledby="title-oh">
             <a
     class="project-slide-link"
@@ -744,10 +627,8 @@
                 loading="lazy"
                 decoding="async"
             >
-
             <div class="project-details">
                 <h2 id="title-oh">O/H - No Contact</h2>
-
                 <p class="project-field">layout / cover / poster</p>
                 <p class="project-year">2024</p>
                 <p>
@@ -760,7 +641,6 @@
                 </p>
                 <p class="project-direction">creative direction: Pausa Lab</p>
             </div>
-
             <div class="project-caption">
                 <p>
                     Together with Marco, I designed the covers and printed
@@ -769,38 +649,28 @@
                 </p>
             </div>
         </section>
-
     </main>
-
     <script>
         const scroller = document.querySelector(".work-slides");
         const slides = [...document.querySelectorAll(".work-slide")];
-
         let activeSlide = null;
-
         /*
          * Il file video viene richiesto solo quando
          * la slide si avvicina alla viewport.
          */
         function loadVideo(video) {
             if (!video || video.dataset.loaded === "true") return;
-
             const source = video.querySelector("source[data-src]");
-
             if (!source) return;
-
             source.src = source.dataset.src;
             video.dataset.loaded = "true";
             video.preload = "auto";
             video.load();
         }
-
         function updatePlayback() {
             slides.forEach(slide => {
                 const video = slide.querySelector("video");
-
                 if (!video) return;
-
                 if (slide === activeSlide && !document.hidden) {
                     loadVideo(video);
                     video.play().catch(() => {});
@@ -809,29 +679,21 @@
                 }
             });
         }
-
         function activateSlide(slide) {
             if (activeSlide === slide) return;
-
             activeSlide = slide;
-
             slides.forEach(item => {
                 item.classList.toggle("is-active", item === slide);
             });
-
             updatePlayback();
         }
-
         /* Precarica solo nelle vicinanze della slide */
-
         const preloadObserver = new IntersectionObserver(
             entries => {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
-
                     const video = entry.target.querySelector("video");
                     loadVideo(video);
-
                     preloadObserver.unobserve(entry.target);
                 });
             },
@@ -841,9 +703,7 @@
                 threshold: 0
             }
         );
-
         /* Riproduce un solo video alla volta */
-
         const activeObserver = new IntersectionObserver(
             entries => {
                 entries.forEach(entry => {
@@ -860,19 +720,15 @@
                 threshold: [0, 0.55, 1]
             }
         );
-
         slides.forEach(slide => {
             preloadObserver.observe(slide);
             activeObserver.observe(slide);
         });
-
         document.addEventListener(
             "visibilitychange",
             updatePlayback
         );
-
         activateSlide(slides[0]);
     </script>
-
 </body>
 </html>
