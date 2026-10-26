@@ -8,10 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Inter+Tight:wght@400&amp;display=swap" rel="stylesheet">
 
     <style>
         @font-face {
@@ -346,7 +343,47 @@
     <link rel="stylesheet" href="mobile-menu.css">
     <script src="mobile-menu.js" defer></script>
     
-</head>
+<style data-mobile-project="true">.mobile-project-info, .mobile-gallery-controls { display: none; }
+@media (max-width: 700px) {
+  body { color: #000; background: #fff; }
+  .project-heading, .footer-space { display: none; }
+  .scroll-page { scroll-snap-type: none; overscroll-behavior-y: auto; }
+  .mobile-project-info { display: block; padding-top: 132px; margin-bottom: 44px; }
+  .project-info-list { margin: 0; padding: 0; }
+  .project-info-row { display: grid; grid-template-columns: minmax(0,1.8fr) minmax(0,1fr); align-items: baseline; gap: 12px; padding: 9px 16px; border-bottom: 1px solid #a0a0a0; }
+  .project-info-row dt, .project-info-row dd { min-width: 0; margin: 0; font-size: 14px; line-height: 1.35; }
+  .project-info-row dt { font-family: 'PPEiko',serif; font-weight: 300; font-style: italic; letter-spacing: 0; }
+  .project-info-row dd { font-family: 'Inter Tight',sans-serif; font-weight: 400; letter-spacing: -.3px; text-align: left; overflow-wrap: anywhere; }
+  .stage { position: relative; top: auto; height: auto; margin: 0; overflow: visible; pointer-events: auto; }
+  .stage-columns { position: static; display: flex; flex-direction: column; }
+  .scroll-step { display: none; }
+  .media-window { display: flex; width: 100%; height: auto; aspect-ratio: 1.6; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; background: #000; }
+  .media-window::-webkit-scrollbar { display: none; }
+  .media-panel { position: relative; inset: auto; flex: 0 0 100%; width: 100%; height: 100%; padding: 6px 8px; visibility: visible; opacity: 1; transform: none; will-change: auto; scroll-snap-align: start; scroll-snap-stop: always; }
+  .media-panel picture, .media-panel .media-frame { display: block; width: 100%; height: 100%; max-height: none; aspect-ratio: auto; }
+  .media-panel img, .media-panel video { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+  .mobile-gallery-controls { display: flex; justify-content: center; padding: 10px 16px 16px; }
+  .gallery-dot { display: grid; place-items: center; width: 10px; height: 32px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+  .gallery-dot::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #dfd1d4; }
+  .gallery-dot[aria-current='true']::before { background: #372128; }
+  .gallery-dot:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+  .text-window { display: flex; flex-direction: column; overflow: visible; padding: 10px 16px 80px; font-family: 'Inter Tight',sans-serif; }
+  .text-panel { position: static; display: block; padding: 0; margin: 0 0 24px; visibility: visible; opacity: 1; transform: none; will-change: auto; }
+  .text-panel[data-mobile-empty] { display: none; }
+  .text-panel:last-child { margin-bottom: 0; }
+  .text-content { width: 100%; max-width: none; height: auto; max-height: none; overflow: visible; pointer-events: auto; }
+  .text-panel p, .text-content p { width: 100%; max-width: none; margin: 0; font-family: 'Inter Tight',sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.4; letter-spacing: -.3px; text-align: left; color: #000; }
+  .text-content p + p { margin-top: 24px; }
+  .photo-credit { position: static; margin: 16px 0 0; padding: 0; max-width: none; }
+  .photo-credit p { font-family: 'Inter Tight',sans-serif; font-size: 12px; line-height: 1.4; }
+  .services-timeline { display: none; }
+  .services-intro { position: static; display: block; height: auto; margin: 0 0 16px; padding: 0; visibility: visible; opacity: 1; transform: none; order: 1; }
+  .services-heading { position: static; padding: 0; }
+  .services-heading p { font-family: 'Inter Tight',sans-serif; font-size: 1rem; line-height: 1.4; }
+  .text-window:has(.services-intro) > .text-panel { order: 2; }
+  .text-window:has(.services-intro) > .text-panel.mobile-first-panel { order: 0; }
+}
+</style></head>
 
 <body>
 
@@ -355,13 +392,14 @@
             Francesco Chiariotti
         </a>
 
-        <a class="corner-work" href="work.html">work</a>
+        <a class="corner-work" href="work-test.html">work</a>
         <a class="corner-info" href="info.html">info</a>
 
         <span class="corner-year">@2026</span>
     </nav>
 
-    <header class="project-heading">
+    <button class="mobile-menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigazione" inert><div class="mobile-menu-content"><nav class="mobile-menu-links" aria-label="Mobile navigation"><a href="work-test.html">work</a><a href="info.html">info</a></nav></div><div class="mobile-menu-footer"><span>Portfolio</span><span>@2026</span></div></div><header class="project-heading">
         <div class="heading-left">
             <h1>Thierry Colson</h1>
 
@@ -375,11 +413,7 @@
             <div class="heading-right-content">
                 <p>
                     visit:
-                    <a
-                        href="https://thierrycolson.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >thierrycolson.com</a>
+                    <a href="https://thierrycolson.com" target="_blank" rel="noopener noreferrer">thierrycolson.com</a>
                 </p>
 
                 <p>creative direction: Esto Assosiation</p>
@@ -387,107 +421,68 @@
         </div>
     </header>
 
-    <main
-        class="scroll-page"
-        tabindex="0"
-        aria-label="Thierry Colson project — scroll to explore"
-    >
-        <div class="scroll-track">
+    <main class="scroll-page" tabindex="0" aria-label="Thierry Colson project — scroll to explore">
+        <section class="mobile-project-info" aria-label="Project information"><dl class="project-info-list"><div class="project-info-row"><dt>project.name</dt><dd>Thierry Colson</dd></div><div class="project-info-row"><dt>project.field</dt><dd>branding / website</dd></div><div class="project-info-row"><dt>project.year</dt><dd>2026</dd></div><div class="project-info-row"><dt>project.manager</dt><dd>Esto Association</dd></div><div class="project-info-row"><dt>project.website</dt><dd><a href="https://thierrycolson.com" target="_blank" rel="noopener noreferrer">thierrycolson.com</a>
+                </dd></div></dl></section><div class="scroll-track">
 
             <div class="stage">
                 <div class="stage-columns">
 
                     <!-- COLONNA SINISTRA -->
 
-                    <div class="media-window">
+                    <div class="media-window" role="region" aria-label="Project gallery">
 
                         <!-- SLIDE 1 -->
 
                         <div class="media-panel">
-                            <video
-                                muted
-                                loop
-                                playsinline
-                                preload="auto"
-                                aria-label="Thierry Colson project overview"
-                            >
-                                <source
-                                    src="assets/thierry-video-3.mp4"
-                                    type="video/mp4"
-                                >
-                            </video>
+                            <video muted loop playsinline preload="auto" aria-label="Thierry Colson project overview">
+                                <source src="assets/thierry-video-3.mp4" type="video/mp4">
+                            </source></video>
                         </div>
 
                         <!-- SLIDE 2 -->
 
                         <div class="media-panel">
-                            <video
-                                muted
-                                loop
-                                playsinline
-                                preload="metadata"
-                                aria-label="Thierry Colson recording 1"
-                            >
-                                <source
-                                    src="assets/rec-1-1.mp4"
-                                    type="video/mp4"
-                                >
-                            </video>
+                            <video muted loop playsinline preload="metadata" aria-label="Thierry Colson recording 1">
+                                <source src="assets/rec-1-1.mp4" type="video/mp4">
+                            </source></video>
                         </div>
 
                         <!-- SLIDE 3 -->
 
                         <div class="media-panel">
-                            <img
-                                src="assets/preview-thierry.jpg"
-                                alt="Thierry Colson website"
-                            >
+                            <img src="assets/preview-thierry.jpg" alt="Thierry Colson website">
                         </div>
 
                         <!-- SLIDE 4 -->
 
                         <div class="media-panel">
-                            <img
-                                src="assets/thierry-3.jpg"
-                                alt="Details of the Thierry Colson project"
-                            >
+                            <img src="assets/thierry-3.jpg" alt="Details of the Thierry Colson project">
                         </div>
 
                         <!-- SLIDE 5 -->
 
                         <div class="media-panel">
-                            <img
-                                src="assets/thierry-4-horizontal.png"
-                                alt="Thierry Colson final project presentation"
-                            >
+                            <img src="assets/thierry-4-horizontal.png" alt="Thierry Colson final project presentation">
                         </div>
 
                         <!-- SLIDE 6 -->
 
                         <div class="media-panel">
-                            <video
-                                muted
-                                loop
-                                playsinline
-                                preload="metadata"
-                                aria-label="Thierry Colson recording 2"
-                            >
-                                <source
-                                    src="assets/rec-2-1.mp4"
-                                    type="video/mp4"
-                                >
-                            </video>
+                            <video muted loop playsinline preload="metadata" aria-label="Thierry Colson recording 2">
+                                <source src="assets/rec-2-1.mp4" type="video/mp4">
+                            </source></video>
                         </div>
 
                     </div>
 
-                    <!-- COLONNA DESTRA -->
+                    <div class="mobile-gallery-controls" role="group" aria-label="Choose gallery image"></div><!-- COLONNA DESTRA -->
 
                     <div class="text-window">
 
                         <!-- TESTO SLIDE 1 -->
 
-                        <div class="text-panel">
+                        <div class="text-panel mobile-first-panel">
                             <div class="text-content">
                                 <p>
                                     Thierry Colson is a French luxury fashion
@@ -500,7 +495,7 @@
 
                         <!-- SLIDE 2 SENZA DESCRIZIONE -->
 
-                        <div class="text-panel"></div>
+                        <div class="text-panel" data-mobile-empty="true"></div>
 
                         <!-- TESTO SLIDE 3 -->
 
@@ -556,7 +551,7 @@
 
                         <!-- SLIDE 6 SENZA DESCRIZIONE -->
 
-                        <div class="text-panel"></div>
+                        <div class="text-panel" data-mobile-empty="true"></div>
 
                     </div>
 
@@ -596,6 +591,7 @@
         /* RIPRODUCE SOLO IL VIDEO DELLA SLIDE ATTIVA */
 
         function updateVideos(activeIndex) {
+            if (window.matchMedia('(max-width: 700px)').matches) return;
             mediaPanels.forEach((panel, index) => {
                 const video = panel.querySelector("video");
 
@@ -615,6 +611,11 @@
         /* ANIMAZIONE A SCORRIMENTO INVERSO */
 
         function render() {
+            if (window.matchMedia('(max-width: 700px)').matches) {
+                framePending = false;
+                if (typeof currentActiveIndex !== 'undefined') currentActiveIndex = -1;
+                return;
+            }
             const pageHeight = scroller.clientHeight;
 
             if (!pageHeight) {
@@ -707,5 +708,85 @@
         render();
     </script>
 
-</body>
+<script data-mobile-project="true">(() => {
+  const mobile = matchMedia('(max-width: 700px)');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const scroller = document.querySelector('.scroll-page');
+  const gallery = document.querySelector('.media-window');
+  const panels = [...gallery.querySelectorAll('.media-panel')];
+  const texts = [...document.querySelectorAll('.text-panel')];
+  const controls = document.querySelector('.mobile-gallery-controls');
+  let active = 0, timer, visible = false, touching = false, resumeAt = 0;
+  const buttons = panels.map((panel, i) => {
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'gallery-dot';
+    button.setAttribute('aria-label', `Mostra elemento ${i + 1} di ${panels.length}`);
+    button.addEventListener('click', () => { pause(); go(i); });
+    controls.append(button); return button;
+  });
+  function stop() { clearTimeout(timer); }
+  function videos() {
+    if (!mobile.matches) return;
+    panels.forEach((panel, i) => panel.querySelectorAll('video').forEach(video => {
+      if (i === active && visible && !document.hidden && !reduced.matches) video.play().catch(() => {});
+      else video.pause();
+    }));
+  }
+  function schedule() {
+    stop();
+    if (!mobile.matches || reduced.matches || !visible || touching || document.hidden || gallery.contains(document.activeElement) || controls.contains(document.activeElement)) return;
+    timer = setTimeout(() => go((active + 1) % panels.length), Math.max(4000, resumeAt - Date.now()));
+  }
+  function pause() { resumeAt = Date.now() + 8000; schedule(); }
+  function go(index, instant = false) {
+    gallery.scrollTo({ left: panels[index].offsetLeft, behavior: instant || reduced.matches ? 'instant' : 'smooth' });
+    schedule();
+  }
+  function update() {
+    if (!mobile.matches) return;
+    active = Math.max(0, Math.min(panels.length - 1, Math.round(gallery.scrollLeft / (gallery.clientWidth || 1))));
+    buttons.forEach((b, i) => {
+      if (i === active) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');
+    });
+    videos(); schedule();
+  }
+  function mode() {
+    stop();
+    [...panels, ...texts].forEach(panel => {
+      ['transform','visibility','opacity'].forEach(name => panel.style.removeProperty(name));
+      panel.removeAttribute('aria-hidden');
+      panel.querySelectorAll('.text-content').forEach(content => content.style.removeProperty('pointer-events'));
+    });
+    gallery.tabIndex = mobile.matches ? 0 : -1;
+    document.querySelectorAll('.services-intro').forEach(el => {
+      if (mobile.matches) el.removeAttribute('aria-hidden');
+    });
+    if (mobile.matches) requestAnimationFrame(() => { go(active, true); update(); });
+    else { panels.forEach(p => p.querySelectorAll('video').forEach(v => v.pause())); scroller.dispatchEvent(new Event('scroll')); }
+  }
+  gallery.addEventListener('scroll', update, {passive: true});
+  gallery.addEventListener('pointerdown', () => { touching = true; stop(); }, {passive: true});
+  function release() { if (touching) { touching = false; pause(); } }
+  window.addEventListener('pointerup', release, {passive: true});
+  window.addEventListener('pointercancel', release, {passive: true});
+  gallery.addEventListener('wheel', pause, {passive: true});
+  gallery.addEventListener('keydown', event => {
+    if (!mobile.matches || !['ArrowLeft','ArrowRight'].includes(event.key)) return;
+    event.preventDefault(); pause();
+    go(Math.max(0, Math.min(panels.length - 1, active + (event.key === 'ArrowRight' ? 1 : -1))));
+  });
+  [gallery, controls].forEach(el => {
+    el.addEventListener('focusin', stop);
+    el.addEventListener('focusout', () => setTimeout(schedule,0));
+  });
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; videos(); schedule(); }, {root: scroller}).observe(gallery);
+  new ResizeObserver(() => { if (mobile.matches) go(active, true); }).observe(gallery);
+  mobile.addEventListener('change', mode);
+  reduced.addEventListener('change', () => { videos(); schedule(); });
+  document.addEventListener('visibilitychange', () => { videos(); schedule(); });
+  window.addEventListener('pagehide', stop);
+  window.addEventListener('pageshow', schedule);
+  mode();
+})();
+</script></body>
 </html>

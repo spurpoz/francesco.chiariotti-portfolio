@@ -8,255 +8,470 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile-menu.css">
+
     <script src="mobile-menu.js" defer></script>
+
+    <style>
+        /* MODIFICHE SOLO PER LA HOME MOBILE */
+
+        @media (max-width: 700px) {
+            .hero {
+                position: relative;
+                width: 100%;
+                height: 100svh;
+                min-height: 100svh;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                isolation: isolate;
+            }
+
+            .hero .home-trail {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                z-index: 0;
+                pointer-events: none;
+                transform: none;
+            }
+
+            .hero .home-trail-item {
+                position: absolute;
+                inset: 0;
+                display: none;
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                max-height: none;
+                margin: 0;
+                opacity: 0;
+                transform: none;
+            }
+
+            .hero .home-trail-item.is-active {
+                display: block;
+                opacity: 1;
+            }
+
+            .hero .home-trail-item img,
+            .hero .home-trail-item video {
+                display: block;
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                max-height: none;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .hero .intro {
+                position: absolute;
+                inset: auto 0;
+                top: 50%;
+                z-index: 2;
+
+                display: block;
+                width: 100%;
+                max-width: none;
+                height: auto;
+                min-height: 0;
+
+                margin: 0;
+                padding: 4px 8px;
+                box-sizing: border-box;
+
+                transform: translateY(-50%);
+                background: #d9d9d9;
+                color: #000;
+                border: 0;
+                border-radius: 0;
+                mix-blend-mode: normal;
+                text-shadow: none;
+            }
+
+            .hero .intro::before,
+            .hero .intro::after {
+                display: none;
+            }
+
+            .hero .intro-content {
+                position: static;
+                display: block;
+                width: 100%;
+                max-width: none;
+                height: auto;
+                margin: 0;
+                padding: 0;
+                transform: none;
+                background: transparent;
+                color: #000;
+            }
+
+            .hero .intro-desktop {
+                display: none;
+            }
+
+            .hero .intro-mobile {
+                position: static;
+                display: block;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                background: transparent;
+                color: #000;
+            }
+
+            .hero .intro-mobile .intro-title {
+                position: static;
+                display: block;
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                padding: 0;
+
+                font-family: "Inter", sans-serif;
+                font-size: 16px;
+                font-weight: 400;
+                font-style: normal;
+                line-height: 1.15;
+                letter-spacing: -0.5px;
+
+                text-align: justify;
+                text-align-last: left;
+                text-transform: none;
+                white-space: normal;
+                text-wrap: wrap;
+
+                color: #000;
+                text-shadow: none;
+            }
+
+            .hero .intro-mobile em {
+                font-style: normal;
+            }
+
+            .hero .intro-mobile .intro-orange {
+                color: #000;
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 2px;
+            }
+
+            .hero .intro-mobile .intro-credits {
+                position: static;
+                display: block;
+                width: auto;
+                max-width: none;
+                margin: 4px 0 0;
+                padding: 0;
+                transform: none;
+
+                font-family: "Inter", sans-serif;
+                font-size: 10px;
+                font-weight: 400;
+                line-height: 1.15;
+                letter-spacing: -0.2px;
+                text-align: left;
+                color: #000;
+            }
+
+            .hero .intro-mobile .intro-credits a {
+                position: static;
+                display: inline;
+                font: inherit;
+                color: #000;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <nav class="home-corners" aria-label="Main navigation">
+        <a class="home-name" href="index.html">
+            Francesco Chiariotti
+        </a>
 
-   <nav class="home-corners" aria-label="Main navigation">
-    <a class="home-name" href="index.html">Francesco Chiariotti</a>
-    <a class="home-work" href="work-test.html">work</a>
-    <a class="home-info" href="info.html">info</a>
-    <span class="home-year">@2026</span>
-</nav>
+        <a class="home-work" href="work-test.html">work</a>
+        <a class="home-info" href="info.html">info</a>
 
-<button
-    class="mobile-menu-toggle"
-    type="button"
-    aria-label="Apri menu"
-    aria-expanded="false"
-    aria-controls="mobile-menu"
->
-    <span></span>
-    <span></span>
-</button>
-
-<div
-    class="mobile-menu"
-    id="mobile-menu"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Navigazione"
-    inert
->
-    <div class="mobile-menu-content">
-    <nav class="mobile-menu-links" aria-label="Mobile navigation">
-        <a href="work-test.html">work</a>
-        <a href="info.html">info</a>
+        <span class="home-year">@2026</span>
     </nav>
-</div>
 
-<div class="mobile-menu-footer">
-    <span>Portfolio</span>
-    <span>@2026</span>
-</div>
-</div>
+    <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Apri menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+    >
+        <span></span>
+        <span></span>
+    </button>
+
+    <div
+        class="mobile-menu"
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigazione"
+        inert
+    >
+        <div class="mobile-menu-content">
+            <nav
+                class="mobile-menu-links"
+                aria-label="Mobile navigation"
+            >
+                <a href="work-test.html">work</a>
+                <a href="info.html">info</a>
+            </nav>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <span>Portfolio</span>
+            <span>@2026</span>
+        </div>
+    </div>
 
     <main>
-    <section class="hero">
+        <section class="hero">
+            <div class="home-trail" aria-hidden="true"></div>
 
-        <div class="home-trail" aria-hidden="true"></div>
+            <section class="intro">
+                <div class="intro-content">
 
-        <section class="intro">
-            
+                    <!-- TESTO DESKTOP -->
+                    <p class="intro-title intro-desktop">
+                        <span class="intro-line">
+                            A <em>selection of projects</em> carried
+                            out during the past years
+                        </span>
 
-            <div class="intro-content">
-    <!-- TESTO DESKTOP -->
-    <p class="intro-title intro-desktop">
-        <span class="intro-line">
-            A <em>selection of projects</em> carried out during the past years
-        </span>
+                        <span class="intro-line">
+                            while working for the Athens-based studio
+                            <a
+                                href="https://estoassociation.com/"
+                                class="intro-orange"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >Esto Association</a> &amp;
+                        </span>
 
-        <span class="intro-line">
-            while working for the Athens-based studio
-            <a
-                href="https://estoassociation.com/"
-                class="intro-orange"
-                target="_blank"
-                rel="noopener noreferrer"
-            >Esto Association</a> &amp;
-        </span>
+                        <span class="intro-line intro-last-line">
+                            <span>
+                                Bologna-based studio Pausa Lab*.
+                            </span>
 
-        <span class="intro-line intro-last-line">
-            <span>Bologna-based studio Pausa Lab*.</span>
+                            <span class="intro-credits">
+                                <a
+                                    href="https://www.instagram.com/marcomaldarella/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Marco Maldarella</a><br>
+                                <a
+                                    href="https://www.instagram.com/aggrovigliata/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Giorgia Masina</a>
+                            </span>
+                        </span>
+                    </p>
 
-            <span class="intro-credits">
-                <a
-                    href="https://www.instagram.com/marcomaldarella/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >Marco Maldarella</a><br>
-                <a
-                    href="https://www.instagram.com/aggrovigliata/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >Giorgia Masina</a>
-            </span>
-        </span>
-    </p>
+                    <!-- TESTO MOBILE -->
+                    <div class="intro-mobile">
+                        <p class="intro-title">
+                            A <em>selection of projects</em> carried
+                            out during the past years while working
+                            for the Athens-based studio
+                            <a
+                                href="https://estoassociation.com/"
+                                class="intro-orange"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >Esto Association</a>
+                            &amp; Bologna-based studio Pausa Lab*.
+                        </p>
 
-    <!-- TESTO MOBILE: modifica gli a capo qui -->
-    <div class="intro-mobile">
-    <p class="intro-title">
-        A <em>selection of projects</em><br>
-        carried out during the past years<br>
-        while working for the Athens-based<br>
-        studio
-        <a
-            href="https://estoassociation.com/"
-            class="intro-orange"
-            target="_blank"
-            rel="noopener noreferrer"
-        >Esto Association</a> &amp;<br>
+                        <div class="intro-credits">
+                            <a
+                                href="https://www.instagram.com/marcomaldarella/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >Marco Maldarella</a><br>
+                            <a
+                                href="https://www.instagram.com/aggrovigliata/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >Giorgia Masina</a>
+                        </div>
+                    </div>
 
-        <span class="intro-last-line">
-            <span>Bologna-based studio Pausa Lab*.</span>
-
-            <span class="intro-credits">
-                <a
-                    href="https://www.instagram.com/marcomaldarella/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >Marco Maldarella</a><br>
-                <a
-                    href="https://www.instagram.com/aggrovigliata/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >Giorgia Masina</a>
-            </span>
-        </span>
-    </p>
-</div>
-</div>
+                </div>
+            </section>
         </section>
+    </main>
 
-    </section>
-</main>
+    <script>
+        (() => {
+            const container = document.querySelector(".home-trail");
+            if (!container) return;
 
-<script>
-(() => {
-    const container = document.querySelector(".home-trail");
-    if (!container) return;
+            const sources = [
+                "assets/444-studios/444-STUDIO-1.png",
+                "assets/dounias/dounias-logo-2.gif",
+                "assets/preview-kaos.mp4",
+                "assets/preview-oh-no.jpg",
+                "assets/thierry-video-3.mp4",
+                "assets/zavaii-hero.png",
+                "assets/damianidis-mockups-05.gif",
+                "assets/preview-esto.mp4"
+            ];
 
-    const sources = [
-        "assets/444-studios/444-STUDIO-1.png",
-        "assets/dounias/dounias-logo-2.gif",
-        "assets/preview-kaos.mp4",
-        "assets/preview-oh-no.jpg",
-        "assets/thierry-video-3.mp4",
-        "assets/zavaii-hero.png",
-        "assets/damianidis-mockups-05.gif",
-        "assets/preview-esto.mp4"
-    ];
+            const interval = 1000;
 
-    const interval = 1000; // 500 millisecondi = 0,5 secondi
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            );
 
-    let current = null;
-    let timer = null;
+            let current = null;
+            let timer = null;
 
-    const items = sources.map((src) => {
-        const box = document.createElement("div");
-        box.className = "home-trail-item";
+            const items = sources.map((src) => {
+                const box = document.createElement("div");
+                box.className = "home-trail-item";
 
-        const isVideo = src.endsWith(".mp4");
-        const media = document.createElement(isVideo ? "video" : "img");
-        const item = { box, media, isVideo, ready: false };
+                const isVideo = src.endsWith(".mp4");
+                const media = document.createElement(
+                    isVideo ? "video" : "img"
+                );
 
-        const markReady = () => {
-            item.ready = true;
+                const item = {
+                    box,
+                    media,
+                    isVideo,
+                    ready: false
+                };
 
-            if (!current && !document.hidden) {
-                show(item);
+                const markReady = () => {
+                    item.ready = true;
+
+                    if (!current && !document.hidden) {
+                        show(item);
+                    }
+                };
+
+                if (isVideo) {
+                    media.muted = true;
+                    media.loop = true;
+                    media.playsInline = true;
+                    media.preload = "auto";
+
+                    media.addEventListener(
+                        "loadeddata",
+                        markReady,
+                        { once: true }
+                    );
+                } else {
+                    media.alt = "";
+                    media.draggable = false;
+
+                    media.addEventListener(
+                        "load",
+                        markReady,
+                        { once: true }
+                    );
+                }
+
+                media.addEventListener("error", () => {
+                    item.ready = false;
+                });
+
+                media.src = src;
+                box.appendChild(media);
+                container.appendChild(box);
+
+                return item;
+            });
+
+            function show(item) {
+                if (current) {
+                    current.box.classList.remove("is-active");
+
+                    if (current.isVideo) {
+                        current.media.pause();
+                    }
+                }
+
+                current = item;
+                current.box.classList.add("is-active");
+
+                if (current.isVideo && !reducedMotion.matches) {
+                    current.media.play().catch(() => {});
+                }
             }
-        };
 
-        if (isVideo) {
-            media.muted = true;
-            media.loop = true;
-            media.playsInline = true;
-            media.preload = "auto";
-            media.addEventListener("loadeddata", markReady, { once: true });
-        } else {
-            media.alt = "";
-            media.draggable = false;
-            media.addEventListener("load", markReady, { once: true });
-        }
+            function next() {
+                const readyItems = items.filter(
+                    (item) => item.ready
+                );
 
-        media.addEventListener("error", () => {
-            item.ready = false;
-        });
+                if (!readyItems.length) return;
 
-        media.src = src;
-        box.appendChild(media);
-        container.appendChild(box);
+                const index = readyItems.indexOf(current);
 
-        return item;
-    });
+                const nextItem = readyItems[
+                    (index + 1) % readyItems.length
+                ];
 
-    function show(item) {
-        if (current) {
-            current.box.classList.remove("is-active");
-
-            if (current.isVideo) {
-                current.media.pause();
+                if (nextItem !== current) {
+                    show(nextItem);
+                }
             }
-        }
 
-        current = item;
-        current.box.classList.add("is-active");
+            function stop() {
+                window.clearInterval(timer);
+                timer = null;
 
-        if (current.isVideo && !reducedMotion.matches) {
-            // Riprende dal punto in cui si era fermato.
-            current.media.play().catch(() => {});
-        }
-    }
+                if (current?.isVideo) {
+                    current.media.pause();
+                }
+            }
 
-    function next() {
-        const readyItems = items.filter((item) => item.ready);
-        if (!readyItems.length) return;
+            function start() {
+                stop();
 
-        const index = readyItems.indexOf(current);
-        const nextItem = readyItems[(index + 1) % readyItems.length];
+                if (document.hidden || reducedMotion.matches) {
+                    return;
+                }
 
-        if (nextItem !== current) show(nextItem);
-    }
+                if (current?.isVideo) {
+                    current.media.play().catch(() => {});
+                }
 
-    function stop() {
-        window.clearInterval(timer);
-        timer = null;
+                timer = window.setInterval(next, interval);
+            }
 
-        if (current?.isVideo) {
-            current.media.pause();
-        }
-    }
+            document.addEventListener(
+                "visibilitychange",
+                start
+            );
 
-    function start() {
-        stop();
+            reducedMotion.addEventListener("change", start);
 
-        if (document.hidden || reducedMotion.matches) return;
+            window.addEventListener("pagehide", stop);
+            window.addEventListener("pageshow", start);
 
-        if (current?.isVideo) {
-            current.media.play().catch(() => {});
-        }
-
-        timer = window.setInterval(next, interval);
-    }
-
-    document.addEventListener("visibilitychange", start);
-    reducedMotion.addEventListener("change", start);
-    window.addEventListener("pagehide", stop);
-    window.addEventListener("pageshow", start);
-
-    start();
-})();
-</script>
-
+            start();
+        })();
+    </script>
 </body>
 </html>

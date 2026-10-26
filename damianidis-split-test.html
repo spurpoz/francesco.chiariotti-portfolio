@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Damianidis — Split Test</title>
+    <title>Damianidis — Francesco Chiariotti</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Inter+Tight:wght@400&display=swap"
         rel="stylesheet"
     >
+
+    <link rel="stylesheet" href="mobile-menu.css">
+    <script src="mobile-menu.js" defer></script>
 
     <style>
         @font-face {
@@ -43,7 +46,7 @@
             font-family: "Inter", sans-serif;
             font-size: 12px;
             font-weight: 400;
-            color: #4B4B4B;
+            color: #4b4b4b;
             background: #fff;
             letter-spacing: -0.3px;
         }
@@ -56,10 +59,16 @@
 
         a:hover,
         a:focus-visible {
-            color: #FF6C00;
+            color: #ff6c00;
         }
 
-        /* NAVIGAZIONE FISSA */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 1px solid currentColor;
+            outline-offset: 4px;
+        }
+
+        /* NAVIGAZIONE */
 
         .corners {
             position: fixed;
@@ -98,14 +107,13 @@
             right: 16px;
         }
 
-        /* INTESTAZIONI — AREA ALTA 25SVH */
+        /* INTESTAZIONE DESKTOP */
 
         .project-heading {
             position: fixed;
             top: 0;
             left: 0;
             z-index: 30;
-
             width: 100%;
             height: var(--heading-height);
 
@@ -137,8 +145,6 @@
                 var(--right-padding-left);
         }
 
-        /* Stessa larghezza e posizione dei testi sottostanti */
-
         .heading-right-content {
             width: 100%;
             max-width: 560px;
@@ -166,12 +172,7 @@
             pointer-events: auto;
         }
 
-        .heading-right a:hover,
-        .heading-right a:focus-visible {
-            color: #FF6C00;
-        }
-
-        /* AREA DI SCROLL */
+        /* AREA DI SCROLL DESKTOP */
 
         .scroll-page {
             position: fixed;
@@ -194,14 +195,11 @@
             position: relative;
         }
 
-        /* SCENA FISSA DURANTE LO SCROLL */
-
         .stage {
             position: sticky;
             top: 0;
             height: 100svh;
             margin-bottom: -100svh;
-
             overflow: hidden;
             pointer-events: none;
         }
@@ -224,8 +222,6 @@
             min-height: 0;
             overflow: hidden;
         }
-
-        /* PANNELLI */
 
         .media-panel,
         .text-panel {
@@ -251,8 +247,6 @@
             object-position: center;
         }
 
-        /* Il pannello scorre, il video al suo interno ruota */
-
         .media-panel video.rotated-video {
             flex: none;
             width: var(--rotated-width, 0px);
@@ -277,7 +271,6 @@
             width: 100%;
             max-width: 560px;
             margin: 0;
-
             font-size: 17px;
             line-height: 1.4;
             letter-spacing: -0.5px;
@@ -289,8 +282,6 @@
             visibility: visible;
         }
 
-        /* POSIZIONI DI AGGANCIO */
-
         .scroll-step {
             height: 100svh;
             scroll-snap-align: start;
@@ -298,48 +289,224 @@
             pointer-events: none;
         }
 
-        /* SPAZIO RISERVATO AI LINK IN BASSO */
-
         .footer-space {
             position: fixed;
             bottom: 0;
             left: 0;
             z-index: 30;
-
             width: 100%;
             height: var(--footer-height);
-
             background: #fff;
             pointer-events: none;
+        }
+
+        .mobile-project-info,
+        .gallery-controls {
+            display: none;
         }
 
         /* MOBILE */
 
         @media (max-width: 700px) {
             body {
-                --right-padding-left: 12px;
-                --right-padding-right: 12px;
+                color: #000;
+                background: #fff;
             }
 
-            .heading-left {
-                padding: 52px 12px 16px;
+            .project-heading,
+            .footer-space {
+                display: none;
             }
 
-            .heading-right {
-                padding:
-                    52px
-                    var(--right-padding-right)
-                    16px
-                    var(--right-padding-left);
+            .scroll-page {
+                scroll-snap-type: none;
+                overscroll-behavior-y: auto;
+            }
+
+            /* INFORMAZIONI IN LISTA */
+
+            .mobile-project-info {
+                display: block;
+                padding-top: 132px;
+                margin-bottom: 44px;
+            }
+
+            .project-info-list {
+                margin: 0;
+                padding: 0;
+            }
+
+            .project-info-row {
+                display: grid;
+                grid-template-columns:
+                    minmax(0, 1.8fr)
+                    minmax(0, 1fr);
+                align-items: baseline;
+                column-gap: 12px;
+
+                padding: 9px 16px;
+                border-bottom: 1px solid #a0a0a0;
+            }
+
+            .project-info-row dt,
+            .project-info-row dd {
+                min-width: 0;
+                margin: 0;
+                font-size: 14px;
+                line-height: 1.35;
+            }
+
+            .project-info-row dt {
+                font-family: "PPEiko", serif;
+                font-weight: 300;
+                font-style: italic;
+                letter-spacing: 0;
+            }
+
+            .project-info-row dd {
+                font-family: "Inter Tight", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                letter-spacing: -0.3px;
+                text-align: left;
+                overflow-wrap: anywhere;
+            }
+
+            /* STRUTTURA VERTICALE */
+
+            .stage {
+                position: relative;
+                top: auto;
+                height: auto;
+                margin: 0;
+                overflow: visible;
+                pointer-events: auto;
+            }
+
+            .stage-columns {
+                position: static;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .scroll-step {
+                display: none;
+            }
+
+            /* GALLERIA ORIZZONTALE */
+
+            .media-window {
+                display: flex;
+                width: 100%;
+                aspect-ratio: 1.6;
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                scroll-snap-type: x mandatory;
+                overscroll-behavior-x: contain;
+                scrollbar-width: none;
+                background: #000;
+            }
+
+            .media-window::-webkit-scrollbar {
+                display: none;
             }
 
             .media-panel {
-                padding: 0 12px;
+                position: relative;
+                inset: auto;
+                flex: 0 0 100%;
+                width: 100%;
+                height: 100%;
+                padding: 6px 8px;
+
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                will-change: auto;
+
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+
+            /* PALLINI E CONTROLLO AUTOSCROLL */
+
+            .gallery-controls {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+                padding: 10px 16px 16px;
+            }
+
+            .gallery-dots {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .gallery-dot {
+                display: grid;
+                place-items: center;
+                width: 10px;
+                height: 32px;
+                padding: 0;
+                border: 0;
+                background: transparent;
+                cursor: pointer;
+            }
+
+            .gallery-dot::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: #dfd1d4;
+            }
+
+            .gallery-dot[aria-current="true"]::before {
+                background: #372128;
+            }
+
+            .gallery-toggle {
+                display: none;
+            }
+
+            /* DESCRIZIONE COMPLETA */
+
+            .text-window {
+                overflow: visible;
+                padding: 10px 16px 80px;
+                font-family: "Inter Tight", sans-serif;
+            }
+
+            .text-panel {
+                position: static;
+                display: block;
+                padding: 0;
+                margin: 0 0 24px;
+
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                will-change: auto;
+            }
+
+            .text-panel:last-child {
+                margin-bottom: 0;
             }
 
             .text-panel p {
-                font-size: 17px;
-                line-height: 1.3;
+                width: 100%;
+                max-width: none;
+                margin: 0;
+
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.4;
+                letter-spacing: -0.3px;
+                text-align: left;
+                color: #000;
             }
         }
 
@@ -352,21 +519,54 @@
     </style>
 </head>
 
-    <link rel="stylesheet" href="mobile-menu.css">
-    <script src="mobile-menu.js" defer></script>
-
 <body>
-
     <nav class="corners" aria-label="Main navigation">
         <a class="corner-name" href="index.html">
             Francesco Chiariotti
         </a>
 
-        <a class="corner-work" href="work.html">work</a>
+        <a class="corner-work" href="work-test.html">work</a>
         <a class="corner-info" href="info.html">info</a>
 
         <span class="corner-year">@2026</span>
     </nav>
+
+    <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Apri menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+    >
+        <span></span>
+        <span></span>
+    </button>
+
+    <div
+        class="mobile-menu"
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigazione"
+        inert
+    >
+        <div class="mobile-menu-content">
+            <nav
+                class="mobile-menu-links"
+                aria-label="Mobile navigation"
+            >
+                <a href="work-test.html">work</a>
+                <a href="info.html">info</a>
+            </nav>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <span>Portfolio</span>
+            <span>@2026</span>
+        </div>
+    </div>
+
+    <!-- INTESTAZIONE DESKTOP -->
 
     <header class="project-heading">
         <div class="heading-left">
@@ -389,7 +589,7 @@
                     >damianidis.co</a>
                 </p>
 
-                <p>creative direction: Esto Assosiation</p>
+                <p>creative direction: Esto Association</p>
             </div>
         </div>
     </header>
@@ -397,17 +597,60 @@
     <main
         class="scroll-page"
         tabindex="0"
-        aria-label="Damianidis project — scroll to explore"
+        aria-label="Damianidis project"
     >
-        <div class="scroll-track">
+        <!-- INFORMAZIONI MOBILE -->
 
+        <section
+            class="mobile-project-info"
+            aria-label="Project information"
+        >
+            <dl class="project-info-list">
+                <div class="project-info-row">
+                    <dt>project.name</dt>
+                    <dd>Damianidis</dd>
+                </div>
+
+                <div class="project-info-row">
+                    <dt>project.field</dt>
+                    <dd>branding / website</dd>
+                </div>
+
+                <div class="project-info-row">
+                    <dt>project.year</dt>
+                    <dd>2026</dd>
+                </div>
+
+                <div class="project-info-row">
+                    <dt>project.manager</dt>
+                    <dd>Esto Association</dd>
+                </div>
+
+                <div class="project-info-row">
+                    <dt>project.website</dt>
+                    <dd>
+                        <a
+                            href="https://damianidis.co"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >damianidis.co</a>
+                    </dd>
+                </div>
+            </dl>
+        </section>
+
+        <div class="scroll-track">
             <div class="stage">
                 <div class="stage-columns">
 
-                    <!-- COLONNA SINISTRA -->
+                    <!-- IMMAGINI -->
 
-                    <div class="media-window">
-
+                    <div
+                        class="media-window"
+                        role="region"
+                        aria-label="Project gallery"
+                        tabindex="0"
+                    >
                         <div class="media-panel">
                             <img
                                 src="assets/damianidis-mockups-05.gif"
@@ -445,13 +688,26 @@
                                 >
                             </video>
                         </div>
-
                     </div>
 
-                    <!-- COLONNA DESTRA -->
+                    <!-- CONTROLLI MOBILE -->
+
+                    <div class="gallery-controls">
+                        <div
+                            class="gallery-dots"
+                            role="group"
+                            aria-label="Choose gallery image"
+                        ></div>
+
+                        <button
+                            class="gallery-toggle"
+                            type="button"
+                        >Pausa slideshow</button>
+                    </div>
+
+                    <!-- DESCRIZIONE -->
 
                     <div class="text-window">
-
                         <div class="text-panel">
                             <p>
                                 Damianidis is an Athens-based furniture
@@ -487,9 +743,7 @@
                                 online space — expressive, tactile, bold.
                             </p>
                         </div>
-
                     </div>
-
                 </div>
             </div>
 
@@ -497,199 +751,437 @@
             <div class="scroll-step" aria-hidden="true"></div>
             <div class="scroll-step" aria-hidden="true"></div>
             <div class="scroll-step" aria-hidden="true"></div>
-
         </div>
     </main>
 
     <div class="footer-space" aria-hidden="true"></div>
 
     <script>
-        const scroller = document.querySelector(".scroll-page");
-        const mediaWindow = document.querySelector(".media-window");
+        (() => {
+            const scroller = document.querySelector(".scroll-page");
+            const mediaWindow = document.querySelector(".media-window");
+            const controls = document.querySelector(".gallery-controls");
+            const dotsContainer = document.querySelector(".gallery-dots");
+            const toggle = document.querySelector(".gallery-toggle");
 
-        const mediaPanels = [
-            ...document.querySelectorAll(".media-panel")
-        ];
+            const mediaPanels = [
+                ...document.querySelectorAll(".media-panel")
+            ];
 
-        const textPanels = [
-            ...document.querySelectorAll(".text-panel")
-        ];
+            const textPanels = [
+                ...document.querySelectorAll(".text-panel")
+            ];
 
-        const rotatedVideos = [
-            ...document.querySelectorAll(".rotated-video")
-        ];
+            const rotatedVideos = [
+                ...document.querySelectorAll(".rotated-video")
+            ];
 
-        const reducedMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
-
-        let framePending = false;
-        let currentActiveIndex = -1;
-
-        /* DIMENSIONI DEL VIDEO RUOTATO */
-
-        function sizeRotatedVideos() {
-            rotatedVideos.forEach(video => {
-                const panel = video.closest(".media-panel");
-                const styles = getComputedStyle(panel);
-
-                const availableWidth = Math.max(
-                    0,
-                    panel.clientWidth
-                    - parseFloat(styles.paddingLeft)
-                    - parseFloat(styles.paddingRight)
-                );
-
-                const availableHeight = Math.max(
-                    0,
-                    panel.clientHeight
-                    - parseFloat(styles.paddingTop)
-                    - parseFloat(styles.paddingBottom)
-                );
-
-                /*
-                 * Dopo la rotazione:
-                 * larghezza visibile = altezza originale
-                 * altezza visibile = larghezza originale
-                 */
-                const sourceWidth = video.videoWidth || 1920;
-                const sourceHeight = video.videoHeight || 1080;
-
-                const scale = Math.min(
-                    availableWidth / sourceHeight,
-                    availableHeight / sourceWidth
-                );
-
-                video.style.setProperty(
-                    "--rotated-width",
-                    `${sourceWidth * scale}px`
-                );
-
-                video.style.setProperty(
-                    "--rotated-height",
-                    `${sourceHeight * scale}px`
-                );
-            });
-        }
-
-        /* RIPRODUCE SOLO IL VIDEO DELLA SLIDE ATTIVA */
-
-        function updateVideos(activeIndex) {
-            mediaPanels.forEach((panel, index) => {
-                const video = panel.querySelector("video");
-
-                if (!video) return;
-
-                if (index === activeIndex) {
-                    video.play().catch(() => {});
-                } else {
-                    video.pause();
-                }
-            });
-        }
-
-        /* ANIMAZIONE A SCORRIMENTO INVERSO */
-
-        function render() {
-            const pageHeight = scroller.clientHeight;
-
-            if (!pageHeight) {
-                framePending = false;
-                return;
-            }
-
-            const progress = Math.max(
-                0,
-                Math.min(
-                    mediaPanels.length - 1,
-                    scroller.scrollTop / pageHeight
-                )
+            const mobile = window.matchMedia("(max-width: 700px)");
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
             );
 
-            const activeIndex = Math.round(progress);
+            let framePending = false;
+            let currentActiveIndex = -1;
+            let timer = null;
+            let manuallyPaused = false;
+            let interacting = false;
+            let resumeAt = 0;
+            let galleryVisible = false;
 
-            mediaPanels.forEach((media, index) => {
-                const text = textPanels[index];
-                const offset = index - progress;
+            const dots = mediaPanels.map((panel, index) => {
+                const button = document.createElement("button");
 
-                const visible = reducedMotion.matches
-                    ? index === activeIndex
-                    : Math.abs(offset) < 1;
+                button.type = "button";
+                button.className = "gallery-dot";
+                button.setAttribute(
+                    "aria-label",
+                    `Show image ${index + 1} of ${mediaPanels.length}`
+                );
 
-                const movement = reducedMotion.matches
-                    ? 0
-                    : offset * 100;
+                button.addEventListener("click", () => {
+                    pauseForInteraction();
+                    goToSlide(index);
+                });
 
-                media.style.transform =
-                    `translateY(${movement}%)`;
+                dotsContainer.appendChild(button);
+                return button;
+            });
 
-                text.style.transform =
-                    `translateY(${-movement}%)`;
+            /* VIDEO RUOTATO */
 
-                const opacity = reducedMotion.matches
-                    ? 1
-                    : Math.max(0, 1 - Math.abs(offset));
+            function sizeRotatedVideos() {
+                rotatedVideos.forEach(video => {
+                    const panel = video.closest(".media-panel");
+                    const styles = getComputedStyle(panel);
 
-                [media, text].forEach(panel => {
-                    panel.style.visibility =
-                        visible ? "visible" : "hidden";
-
-                    panel.style.opacity = opacity;
-
-                    panel.setAttribute(
-                        "aria-hidden",
-                        String(index !== activeIndex)
+                    const availableWidth = Math.max(
+                        0,
+                        panel.clientWidth
+                        - parseFloat(styles.paddingLeft)
+                        - parseFloat(styles.paddingRight)
                     );
+
+                    const availableHeight = Math.max(
+                        0,
+                        panel.clientHeight
+                        - parseFloat(styles.paddingTop)
+                        - parseFloat(styles.paddingBottom)
+                    );
+
+                    const sourceWidth = video.videoWidth || 1920;
+                    const sourceHeight = video.videoHeight || 1080;
+
+                    const scale = Math.min(
+                        availableWidth / sourceHeight,
+                        availableHeight / sourceWidth
+                    );
+
+                    video.style.setProperty(
+                        "--rotated-width",
+                        `${sourceWidth * scale}px`
+                    );
+
+                    video.style.setProperty(
+                        "--rotated-height",
+                        `${sourceHeight * scale}px`
+                    );
+                });
+            }
+
+            function updateVideos() {
+                mediaPanels.forEach((panel, index) => {
+                    const video = panel.querySelector("video");
+                    if (!video) return;
+
+                    const canPlay =
+                        index === currentActiveIndex &&
+                        !document.hidden &&
+                        !reducedMotion.matches &&
+                        (!mobile.matches || galleryVisible);
+
+                    if (canPlay) {
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                    }
+                });
+            }
+
+            /* CONTROLLI GALLERIA */
+
+            function updateDots(index) {
+                dots.forEach((dot, dotIndex) => {
+                    if (dotIndex === index) {
+                        dot.setAttribute("aria-current", "true");
+                    } else {
+                        dot.removeAttribute("aria-current");
+                    }
+                });
+            }
+
+            function stopAuto() {
+                window.clearTimeout(timer);
+                timer = null;
+            }
+
+            function updateToggle() {
+                toggle.textContent =
+                    manuallyPaused || reducedMotion.matches
+                        ? "Riprendi slideshow"
+                        : "Pausa slideshow";
+
+                toggle.disabled = reducedMotion.matches;
+            }
+
+            function scheduleAuto() {
+                stopAuto();
+
+                if (
+                    !mobile.matches ||
+                    reducedMotion.matches ||
+                    manuallyPaused ||
+                    interacting ||
+                    document.hidden ||
+                    !galleryVisible ||
+                    mediaWindow.contains(document.activeElement) ||
+                    controls.contains(document.activeElement)
+                ) {
+                    return;
+                }
+
+                const delay = Math.max(
+                    4000,
+                    resumeAt - Date.now()
+                );
+
+                timer = window.setTimeout(() => {
+                    const next =
+                        (currentActiveIndex + 1) % mediaPanels.length;
+
+                    goToSlide(next);
+                }, delay);
+            }
+
+            function pauseForInteraction() {
+                resumeAt = Date.now() + 8000;
+                scheduleAuto();
+            }
+
+            function goToSlide(index, instant = false) {
+                mediaWindow.scrollTo({
+                    left: mediaPanels[index].offsetLeft,
+                    behavior:
+                        instant || reducedMotion.matches
+                            ? "instant"
+                            : "smooth"
+                });
+
+                scheduleAuto();
+            }
+
+            toggle.addEventListener("click", () => {
+                manuallyPaused = !manuallyPaused;
+                updateToggle();
+                scheduleAuto();
+            });
+
+            /* RENDER MOBILE E DESKTOP */
+
+            function render() {
+                framePending = false;
+
+                if (mobile.matches) {
+                    const width = mediaWindow.clientWidth;
+                    if (!width) return;
+
+                    const index = Math.max(
+                        0,
+                        Math.min(
+                            mediaPanels.length - 1,
+                            Math.round(mediaWindow.scrollLeft / width)
+                        )
+                    );
+
+                    if (index !== currentActiveIndex) {
+                        currentActiveIndex = index;
+                        updateDots(index);
+                        updateVideos();
+                    }
+
+                    return;
+                }
+
+                const pageHeight = scroller.clientHeight;
+                if (!pageHeight) return;
+
+                const progress = Math.max(
+                    0,
+                    Math.min(
+                        mediaPanels.length - 1,
+                        scroller.scrollTop / pageHeight
+                    )
+                );
+
+                const activeIndex = Math.round(progress);
+
+                mediaPanels.forEach((media, index) => {
+                    const text = textPanels[index];
+                    const offset = index - progress;
+
+                    const visible = reducedMotion.matches
+                        ? index === activeIndex
+                        : Math.abs(offset) < 1;
+
+                    const movement = reducedMotion.matches
+                        ? 0
+                        : offset * 100;
+
+                    media.style.transform =
+                        `translateY(${movement}%)`;
+
+                    text.style.transform =
+                        `translateY(${-movement}%)`;
+
+                    const opacity = reducedMotion.matches
+                        ? 1
+                        : Math.max(0, 1 - Math.abs(offset));
+
+                    [media, text].forEach(panel => {
+                        panel.style.visibility =
+                            visible ? "visible" : "hidden";
+
+                        panel.style.opacity = opacity;
+
+                        panel.setAttribute(
+                            "aria-hidden",
+                            String(index !== activeIndex)
+                        );
+                    });
+                });
+
+                if (activeIndex !== currentActiveIndex) {
+                    currentActiveIndex = activeIndex;
+                    updateVideos();
+                }
+            }
+
+            function requestRender() {
+                if (framePending) return;
+
+                framePending = true;
+                requestAnimationFrame(render);
+            }
+
+            function applyMode() {
+                stopAuto();
+                currentActiveIndex = -1;
+
+                [...mediaPanels, ...textPanels].forEach(panel => {
+                    panel.style.removeProperty("transform");
+                    panel.style.removeProperty("visibility");
+                    panel.style.removeProperty("opacity");
+                    panel.removeAttribute("aria-hidden");
+                });
+
+                mediaWindow.tabIndex = mobile.matches ? 0 : -1;
+
+                sizeRotatedVideos();
+                render();
+                updateToggle();
+                scheduleAuto();
+            }
+
+            scroller.addEventListener(
+                "scroll",
+                requestRender,
+                { passive: true }
+            );
+
+            mediaWindow.addEventListener(
+                "scroll",
+                () => {
+                    if (!mobile.matches) return;
+
+                    requestRender();
+                    scheduleAuto();
+                },
+                { passive: true }
+            );
+
+            mediaWindow.addEventListener(
+                "pointerdown",
+                () => {
+                    interacting = true;
+                    stopAuto();
+                },
+                { passive: true }
+            );
+
+            function endInteraction() {
+                if (!interacting) return;
+
+                interacting = false;
+                pauseForInteraction();
+            }
+
+            window.addEventListener(
+                "pointerup",
+                endInteraction,
+                { passive: true }
+            );
+
+            window.addEventListener(
+                "pointercancel",
+                endInteraction,
+                { passive: true }
+            );
+
+            mediaWindow.addEventListener(
+                "wheel",
+                pauseForInteraction,
+                { passive: true }
+            );
+
+            mediaWindow.addEventListener("keydown", event => {
+                if (!mobile.matches) return;
+
+                let next = currentActiveIndex;
+
+                if (event.key === "ArrowRight") {
+                    next = Math.min(mediaPanels.length - 1, next + 1);
+                } else if (event.key === "ArrowLeft") {
+                    next = Math.max(0, next - 1);
+                } else {
+                    return;
+                }
+
+                event.preventDefault();
+                pauseForInteraction();
+                goToSlide(next);
+            });
+
+            [mediaWindow, controls].forEach(element => {
+                element.addEventListener("focusin", stopAuto);
+
+                element.addEventListener("focusout", () => {
+                    window.setTimeout(scheduleAuto, 0);
                 });
             });
 
-            if (activeIndex !== currentActiveIndex) {
-                currentActiveIndex = activeIndex;
-                updateVideos(activeIndex);
-            }
+            const galleryObserver = new IntersectionObserver(
+                entries => {
+                    galleryVisible = entries[0].isIntersecting;
 
-            framePending = false;
-        }
-
-        function requestRender() {
-            if (framePending) return;
-
-            framePending = true;
-            requestAnimationFrame(render);
-        }
-
-        scroller.addEventListener(
-            "scroll",
-            requestRender,
-            { passive: true }
-        );
-
-        window.addEventListener("resize", () => {
-            sizeRotatedVideos();
-            requestRender();
-        });
-
-        reducedMotion.addEventListener(
-            "change",
-            requestRender
-        );
-
-        rotatedVideos.forEach(video => {
-            video.addEventListener(
-                "loadedmetadata",
-                sizeRotatedVideos
+                    updateVideos();
+                    scheduleAuto();
+                },
+                {
+                    root: scroller,
+                    threshold: 0
+                }
             );
-        });
 
-        const mediaObserver = new ResizeObserver(
-            sizeRotatedVideos
-        );
+            galleryObserver.observe(mediaWindow);
 
-        mediaObserver.observe(mediaWindow);
+            const resizeObserver = new ResizeObserver(() => {
+                sizeRotatedVideos();
 
-        sizeRotatedVideos();
-        render();
+                if (mobile.matches && currentActiveIndex >= 0) {
+                    goToSlide(currentActiveIndex, true);
+                }
+
+                requestRender();
+            });
+
+            resizeObserver.observe(mediaWindow);
+
+            rotatedVideos.forEach(video => {
+                video.addEventListener(
+                    "loadedmetadata",
+                    sizeRotatedVideos
+                );
+            });
+
+            window.addEventListener("resize", requestRender);
+
+            mobile.addEventListener("change", applyMode);
+
+            reducedMotion.addEventListener("change", () => {
+                applyMode();
+                updateVideos();
+            });
+
+            document.addEventListener("visibilitychange", () => {
+                updateVideos();
+                scheduleAuto();
+            });
+
+            window.addEventListener("pagehide", stopAuto);
+            window.addEventListener("pageshow", scheduleAuto);
+
+            applyMode();
+        })();
     </script>
-
 </body>
 </html>
