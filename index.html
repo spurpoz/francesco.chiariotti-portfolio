@@ -1,199 +1,114 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Francesco Chiariotti</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&amp;family=Inter+Tight:wght@400&amp;display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mobile-menu.css">
-
-    <script src="mobile-menu.js" defer></script>
-
-    <style>
-        /* MODIFICHE SOLO PER LA HOME MOBILE */
-
-        @media (max-width: 700px) {
-            .hero {
-                position: relative;
-                width: 100%;
-                height: 100svh;
-                min-height: 100svh;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                isolation: isolate;
-            }
-
-            .hero .home-trail {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                z-index: 0;
-                pointer-events: none;
-                transform: none;
-            }
-
-            .hero .home-trail-item {
-                position: absolute;
-                inset: 0;
-                display: none;
-                width: 100%;
-                height: 100%;
-                max-width: none;
-                max-height: none;
-                margin: 0;
-                opacity: 0;
-                transform: none;
-            }
-
-            .hero .home-trail-item.is-active {
-                display: block;
-                opacity: 1;
-            }
-
-            .hero .home-trail-item img,
-            .hero .home-trail-item video {
-                display: block;
-                width: 100%;
-                height: 100%;
-                max-width: none;
-                max-height: none;
-                object-fit: cover;
-                object-position: center;
-            }
-
-            .hero .intro {
-                position: absolute;
-                inset: auto 0;
-                top: 50%;
-                z-index: 2;
-
-                display: block;
-                width: 100%;
-                max-width: none;
-                height: auto;
-                min-height: 0;
-
-                margin: 0;
-                padding: 4px 8px;
-                box-sizing: border-box;
-
-                transform: translateY(-50%);
-                background: #d9d9d9;
-                color: #000;
-                border: 0;
-                border-radius: 0;
-                mix-blend-mode: normal;
-                text-shadow: none;
-            }
-
-            .hero .intro::before,
-            .hero .intro::after {
-                display: none;
-            }
-
-            .hero .intro-content {
-                position: static;
-                display: block;
-                width: 100%;
-                max-width: none;
-                height: auto;
-                margin: 0;
-                padding: 0;
-                transform: none;
-                background: transparent;
-                color: #000;
-            }
-
-            .hero .intro-desktop {
-                display: none;
-            }
-
-            .hero .intro-mobile {
-                position: static;
-                display: block;
-                width: 100%;
-                margin: 0;
-                padding: 0;
-                background: transparent;
-                color: #000;
-            }
-
-            .hero .intro-mobile .intro-title {
-                position: static;
-                display: block;
-                width: 100%;
-                max-width: none;
-                margin: 0;
-                padding: 0;
-
-                font-family: "Inter", sans-serif;
-                font-size: 16px;
-                font-weight: 400;
-                font-style: normal;
-                line-height: 1.15;
-                letter-spacing: -0.5px;
-
-                text-align: justify;
-                text-align-last: left;
-                text-transform: none;
-                white-space: normal;
-                text-wrap: wrap;
-
-                color: #000;
-                text-shadow: none;
-            }
-
-            .hero .intro-mobile em {
-                font-style: normal;
-            }
-
-            .hero .intro-mobile .intro-orange {
-                color: #000;
-                text-decoration: underline;
-                text-decoration-thickness: 1px;
-                text-underline-offset: 2px;
-            }
-
-            .hero .intro-mobile .intro-credits {
-                position: static;
-                display: block;
-                width: auto;
-                max-width: none;
-                margin: 4px 0 0;
-                padding: 0;
-                transform: none;
-
-                font-family: "Inter", sans-serif;
-                font-size: 10px;
-                font-weight: 400;
-                line-height: 1.15;
-                letter-spacing: -0.2px;
-                text-align: left;
-                color: #000;
-            }
-
-            .hero .intro-mobile .intro-credits a {
-                position: static;
-                display: inline;
-                font: inherit;
-                color: #000;
-            }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Francesco Chiariotti — Portfolio</title>
+<link href="favicon.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&amp;family=Inter+Tight:wght@100;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="mobile-menu.css" rel="stylesheet"/>
+<script defer="" src="mobile-menu.js"></script>
+<style>
+        @font-face {
+            font-family: "PPEiko";
+            src: url("assets/PPEiko-LightItalic.otf") format("opentype");
+            font-weight: 100;
+            font-style: italic;
+            font-display: swap;
         }
-    </style>
-<style data-home-scroll="true">
-/* Home and projects share one scrolling page on mobile. */
-.mobile-home-nav, .zombiescroll, .mobile-home-work { display: none; }
-@media (max-width: 700px) {
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: -0.1px;
+            color: #fff;
+            background: #181818;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover,
+        a:focus-visible {
+            color: none;
+        }
+
+        /* NAVIGAZIONE */
+
+        .corners {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+            text-shadow: 0 1px 4px rgb(0 0 0 / 60%);
+        }
+
+        .corners a,
+        .corners span {
+            position: absolute;
+        }
+
+        .corners a {
+            pointer-events: auto;
+        }
+
+        .corner-name {
+            top: 20px;
+            left: 16px;
+        }
+
+        .corner-work {
+            top: 20px;
+            right: 16px;
+        }
+
+        .corner-info {
+            bottom: 20px;
+            left: 16px;
+        }
+
+        .corner-year {
+            bottom: 20px;
+            right: 16px;
+        }
+
+        /* SCROLL A SCHERMATE */
+
+        .work-slides {
+            position: fixed;
+            inset: 0;
+            height: 100svh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            overscroll-behavior-y: contain;
+            scrollbar-width: none;
+        }
+
+        .work-slides::-webkit-scrollbar {
+            display: none;
+        }
+
         .work-slide {
             position: relative;
             width: 100%;
@@ -403,7 +318,7 @@
 
             .project-caption p {
                 font-size: 1rem;
-                font-weight: 400;
+                font-weight: 100;
                 line-height: 1.4;
                 letter-spacing: -0.3px;
                 text-align: left;
@@ -440,817 +355,479 @@
             }
         }
     
-  html:has(body.mobile-home-page) { height: auto; min-height: 100%; overflow-x: clip; overflow-y: auto; }
-  body.mobile-home-page { height: auto; min-height: 100svh; overflow-x: clip; overflow-y: visible; background: #fff; color: #000; }
-  body.mobile-home-page > main { display: block; width: 100%; height: auto; margin: 0; padding: 0; }
-  body.mobile-home-page > .home-corners,
-  body.mobile-home-page > .mobile-menu-toggle,
-  body.mobile-home-page > .mobile-menu { display: none !important; }
-  .mobile-home-nav { position: fixed; inset: 0 0 auto; z-index: 200; display: flex; justify-content: space-between; align-items: center; min-height: 52px; padding: 18px 16px; background: #fff; color: #000; font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 400; line-height: 1.3; letter-spacing: -.3px; }
-  .mobile-home-nav a { position: static; color: inherit; text-decoration: none; }
-  .mobile-home-nav a:focus-visible, .zombiescroll:focus-visible { outline: 1px solid currentColor; outline-offset: 5px; }
-  .hero { background: #fff; }
-  .hero .home-trail { display: none; }
-  .hero .intro { padding: 0 16px; background: #fff; color: #000; }
-  .hero .intro-mobile .intro-title { font-size: 16px; line-height: 1.3; }
-  .hero .intro-mobile .intro-orange { color: #000; }
-  .zombiescroll { position: absolute; bottom: max(24px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 12px; color: #000; font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 400; line-height: 1.2; letter-spacing: -.3px; text-decoration: none; }
-  .zombiescroll svg { display: block; flex-shrink: 0; }
-  .mobile-home-work { display: block; width: 100%; scroll-margin-top: 52px; }
-  .mobile-home-work .work-slide { height: 100svh; min-height: 560px; color: #fff; line-height: 1.3; }
-  .mobile-home-work .work-slide.is-active::after { opacity: .2; }
-  .mobile-home-work .work-slide.is-active .project-background { transform: scale(1); }
-  .mobile-home-work .project-details h2 { font-family: 'Inter',sans-serif; }
-  .mobile-home-work .project-field, .mobile-home-work .project-year { font-family: 'PPEiko',serif; }
-  .mobile-home-work .project-details a { color: inherit; }
-  .mobile-home-work .project-caption p { font-family: 'Inter',sans-serif; }
-}
-</style><style data-desktop-click="true">
-/* Desktop: project previews advance only on click. */
-.project-click-cursor { display: none; }
-@media (min-width: 701px) {
-    .hero .home-trail-item {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin: 0;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 250ms ease, visibility 0s linear 250ms;
-    }
-    .hero .home-trail-item.is-active {
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 250ms ease, visibility 0s linear 0s;
-    }
-    .hero .preview-project-link {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        display: grid;
-        place-items: center;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        cursor: pointer;
-        text-decoration: none;
-    }
-    .hero .home-trail-item.is-active .preview-project-link {
-        pointer-events: auto;
-    }
-    .hero .preview-project-link::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: rgb(0 0 0 / 20%);
-        opacity: 0;
-        transition: opacity 200ms ease;
-    }
-    .hero .preview-project-label {
-        position: relative;
-        z-index: 1;
-        padding: 12px;
-        color: #fff;
-        font-family: 'Inter Tight', sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        font-style: normal;
-        line-height: 1.3;
-        letter-spacing: 0;
-        opacity: 0;
-        transition: opacity 200ms ease;
-    }
-    .hero .preview-project-link:hover::before,
-    .hero .preview-project-link:focus-visible::before,
-    .hero .preview-project-link:hover .preview-project-label,
-    .hero .preview-project-link:focus-visible .preview-project-label {
-        opacity: 1;
-    }
-    .hero .preview-project-link:focus-visible {
-        outline: 1px solid #fff;
-        outline-offset: -4px;
-    }
-}
-@media (min-width: 701px) and (prefers-reduced-motion: reduce) {
-    .hero .home-trail-item,
-    .hero .home-trail-item.is-active { transition: none; }
-    .hero .preview-project-link::before,
-    .hero .preview-project-label { transition: none; }
-}
-@media (min-width: 701px) and (hover: hover) and (pointer: fine) {
-    .project-click-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10000;
-        display: grid;
-        place-items: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #4B4B4B;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        overflow: visible;
-    }
-    .project-click-cursor.is-visible {
-        opacity: 1;
-        visibility: visible;
-    }
-    .project-click-cursor span {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: block;
-        flex-shrink: 0;
-        color: #FF6C00;
-        font-family: 'PPEiko', serif;
-        font-size: 20px;
-        font-weight: 300;
-        font-style: italic;
-        line-height: 1;
-        letter-spacing: 0;
-        white-space: nowrap;
-    }
-    html.has-project-click-cursor,
-    html.has-project-click-cursor body,
-    html.has-project-click-cursor body * {
-        cursor: none !important;
-    }
+        /* Alternative home: intro, original work scroll, footer. */
+        body { background: #000000; font-family: "Inter Tight", sans-serif; }
+        .work-slide { background: #000000; }
+        .corner-info, .corner-year { transform: translateY(var(--footer-lift, 0px)); }
+        .home-intro {
+            position: relative; height: 100%; width: 100%;
+            scroll-snap-align: start; scroll-snap-stop: always;
+            background: #000; overflow: hidden;
+        }
+        .hero-heading {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: max-content; max-width: calc(100% - 64px);
+        }
+        .hero-heading h1 {
+            margin: 0; font-size: clamp(44px, 8.6vw, 180px);
+            font-weight: 400; line-height: .98; letter-spacing: -.035em; white-space: nowrap;
+        }
+        .hero-subtitle {
+            margin: 12px 0 0; text-align: right;
+            font-size: clamp(20px, 2.25vw, 25px); line-height: 1.1; letter-spacing: -.055em;
+        }
+        .hero-description {
+            position: absolute; bottom: 76px; left: 50%; transform: translateX(-50%);
+            width: min(480px, calc(100% - 48px)); margin: 0;
+            font-size: calc(12px + 4pt); line-height: 1.3;
+            text-align: left; letter-spacing: -.035em; text-wrap: pretty;
+        }
+        .scroll-down {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            font-size: 12px; padding: 4px 8px;
+        }
+        /* Project typography, full-screen media and alignment match work.html. */
+        .work-slide { font-family: "Inter", sans-serif; }
+
+        @media (max-width: 700px) {
+            .hero-heading { max-width: calc(100% - 32px); width: calc(100% - 32px); }
+            .hero-heading h1 { white-space: nowrap; font-size: 12vw; }
+            .hero-subtitle { font-size: 16px; }
+            .hero-description { bottom: 100px; }
+            body.mobile-menu-open .work-slides { overflow-y: hidden; }
+        }
+
+        /* Lente React collegata al nome. */
+.hero-heading h1 {
+    position: relative;
+    z-index: 0;
+    color: #fff;
 }
 
-</style>
-</head>
+.title-link {
+    display: block;
+}
 
-<body class="mobile-home-page" id="top">
-    <nav class="mobile-home-nav" aria-label="Mobile navigation"><a class="mobile-home-name" href="#top">Francesco Chiariotti</a><a href="info.html">info</a></nav><nav class="home-corners" aria-label="Main navigation">
-        <a class="home-name" href="index.html">
-            Francesco Chiariotti
-        </a>
+.name-lens-layer {
+    position: absolute;
+    left: -3%;
+    top: -60%;
+    width: 106%;
+    height: 220%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+}
 
-        <a class="home-work" href="work-test.html">work</a>
-        <a class="home-info" href="info.html">info</a>
+#home-title.lens-active .title-link {
+    opacity: 0;
+}
 
-        <span class="home-year">@2026</span>
-    </nav>
+#home-title.lens-active .name-lens-layer {
+    opacity: 1;
+}
 
-    <button class="mobile-menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span>
-        <span></span>
-    </button>
+.hero-subtitle {
+    position: relative;
+    z-index: 1;
+}
+        /* Initial screen for the glass lens. */
+        #site-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+        }
+        #site-splash .splash-title,
+        #site-splash .splash-orb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        #site-splash .splash-title {
+            font-family: "Inter Tight", sans-serif;
+            font-size: clamp(32px, 8.6vw, 180px);
+            font-weight: 400;
+            letter-spacing: -.065em;
+            line-height: .98;
+            white-space: nowrap;
+        }
+        #site-splash .splash-orb {
+            z-index: 2;
+            width: 25vmin;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at 28% 22%, #def4ff9c, transparent 24%),
+                radial-gradient(circle at 54% 44%, transparent 48%, #6e8dde88 83%, #c7d6ffa8);
+            box-shadow: inset 0 0 2vmin #a0b8ff70;
+            backdrop-filter: blur(2px);
+        }
 
-    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigazione" inert>
-        <div class="mobile-menu-content">
-            <nav class="mobile-menu-links" aria-label="Mobile navigation">
-                <a href="work-test.html">work</a>
-                <a href="info.html">info</a>
-            </nav>
-        </div>
+        #contacts .contact-intro {
+    position: relative;
+    top: -80px;
+}
 
-        <div class="mobile-menu-footer">
-            <span>Portfolio</span>
-            <span>@2026</span>
-        </div>
-    </div>
-
-    <main>
-        <section class="hero">
-            <div class="home-trail" aria-hidden="true"></div>
-
-            <section class="intro">
-                <div class="intro-content">
-
-                    <!-- TESTO DESKTOP -->
-                    <p class="intro-title intro-desktop">
-                        <span class="intro-line">
-                            A <em>selection of projects</em> carried
-                            out during the past years
-                        </span>
-
-                        <span class="intro-line">
-                            while working for the Athens-based studio
-                            <a href="https://estoassociation.com/" class="intro-orange" target="_blank" rel="noopener noreferrer">Esto Association</a> &amp;
-                        </span>
-
-                        <span class="intro-line intro-last-line">
-                            <span>
-                                Bologna-based studio Pausa Lab*.
-                            </span>
-
-                            <span class="intro-credits">
-                                <a href="https://www.instagram.com/marcomaldarella/" target="_blank" rel="noopener noreferrer">Marco Maldarella</a><br>
-                                <a href="https://www.instagram.com/aggrovigliata/" target="_blank" rel="noopener noreferrer">Giorgia Masina</a>
-                            </span>
-                        </span>
-                    </p>
-
-                    <!-- TESTO MOBILE -->
-                    <div class="intro-mobile">
-                        <p class="intro-title">
-                            A <em>selection of projects</em> carried
-                            out during the past years while working
-                            for the Athens-based studio
-                            <a href="https://estoassociation.com/" class="intro-orange" target="_blank" rel="noopener noreferrer">Esto Association</a>
-                            &amp; Bologna-based studio Pausa Lab*.
-                        </p>
-
-                        <div class="intro-credits">
-                            <a href="https://www.instagram.com/marcomaldarella/" target="_blank" rel="noopener noreferrer">Marco Maldarella</a><br>
-                            <a href="https://www.instagram.com/aggrovigliata/" target="_blank" rel="noopener noreferrer">Giorgia Masina</a>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        <a class="zombiescroll" href="#work" aria-label="Scroll to projects"><span>scroll</span><svg width="12" height="60" viewbox="0 0 12 60" fill="none" aria-hidden="true"><path d="M6 1V57M2 53L6 57L10 53" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></section>
-    <section class="mobile-home-work" id="work" aria-label="Selected projects"><section class="work-slide" aria-labelledby="title-thierry">
-            <a class="project-slide-link" href="thierry-colson-split-test.html" aria-label="Apri il progetto Thierry Colson"></a>
-
-            <video class="project-background" muted loop playsinline preload="none" poster="assets/preview-thierry.jpg" aria-hidden="true">
-                <source data-src="assets/thierry-video-3.mp4" type="video/mp4">
-            </source></video>
-
-            <div class="project-details">
-                <h2 id="title-thierry">
-                    <a href="thierry-colson-split-test.html">
+    </style>
+<link href="single-page.css" rel="stylesheet"/><meta content="Francesco Chiariotti — brand design and UX/UI. Selected projects, about and contacts. Based in Italy, available worldwide." name="description"/></head>
+<body>
+<nav aria-label="Main navigation" class="corners">
+<a class="corner-name" href="#top">Francesco Chiariotti</a>
+<a class="corner-work" href="#projects">work</a>
+<a class="corner-info" href="#about">info</a>
+<a class="corner-year" href="#contacts">contacts</a>
+</nav>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Apri menu" class="mobile-menu-toggle" type="button">
+<span></span>
+<span></span>
+</button>
+<div aria-label="Navigazione" aria-modal="true" class="mobile-menu" id="mobile-menu" inert="" role="dialog">
+<div class="mobile-menu-content">
+<nav aria-label="Mobile navigation" class="mobile-menu-links">
+<a href="#projects">
+                    work
+                </a>
+<a href="#about">info</a>
+<a href="#contacts">contacts</a></nav>
+</div>
+<div class="mobile-menu-footer">
+<span>Portfolio</span>
+<span>@2026</span>
+</div>
+</div>
+<main aria-label="Portfolio and selected projects" class="work-slides" tabindex="0">
+<section aria-labelledby="home-title" class="home-intro" id="top">
+<div class="hero-heading">
+<h1 aria-label="Francesco Chiariotti" id="home-title">
+<span aria-hidden="true" class="title-link">Francesco Chiariotti</span>
+</h1>
+<p class="hero-subtitle">Brand design and UX/UI.</p>
+</div>
+</section><section aria-label="About Francesco Chiariotti" class="about-section" id="about"><div aria-hidden="true" class="info-background"><canvas id="info-glass"></canvas></div><button aria-pressed="false" hidden="" id="glass-sound" type="button">sound on</button><div class="about-layout"><section aria-label="About Francesco Chiariotti" class="info-copy">
+<div class="info-content">
+<p>Always fascinated by colors, shapes, and sounds, I mix my passions <br/> with a desire to swim out into the open sea, often finding myself <br/> holding my breath in the depths of a project.<br><br>I work across branding and UI, with a Swiss grid approach<br>and a tendency towards bold, vibrant colors.</p>
+</div>
+</section><p class="about-intro">
+    
+                I like dub music, vintage guitars, and alternative country roads.
+                My hair is slowly turning grey.<br><br>
+                Brand design and UX/UI.<br/>
+                From Italy. Connected worldwide.
+            </p></div></section>
+<!-- THIERRY COLSON -->
+<section aria-labelledby="title-thierry" class="work-slide" id="projects">
+<a aria-label="Apri il progetto Thierry Colson" class="project-slide-link" href="thierry-colson.html"></a>
+<video aria-hidden="true" class="project-background" loop="" muted="" playsinline="" poster="assets/preview-thierry.jpg" preload="none">
+<source data-src="assets/thierry-video-3.mp4" type="video/mp4"/>
+</video>
+<div class="project-details">
+<h2 id="title-thierry">
+<a href="thierry-colson.html">
                         Thierry Colson
                     </a>
-                </h2>
-
-                <p class="project-field">branding / website</p>
-                <p class="project-year">2026</p>
-
-                <p class="project-visit">
+</h2>
+<p class="project-field">branding / website</p>
+<p class="project-year">2026</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://thierrycolson.com" target="_blank" rel="noopener noreferrer">thierrycolson.com</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://thierrycolson.com" rel="noopener noreferrer" target="_blank">thierrycolson.com</a>
+</p>
+<p class="project-direction">
                     creative direction: Esto Association
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Thierry Colson is a French luxury fashion house
                     rooted in a distinctive visual language of Art Nouveau,
                     Baroque references and auteur cinema.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-damianidis">
-            <a class="project-slide-link" href="damianidis-split-test.html" aria-label="Apri il progetto Damianidis"></a>
-
-            <img class="project-background" src="assets/damianidis-mockups-05.gif" alt="Damianidis animated brand mockup" loading="lazy">
-
-            <div class="project-details">
-                <h2 id="title-damianidis">
-                    <a href="damianidis-split-test.html">
+</div>
+</section>
+<!-- DAMIANIDIS -->
+<section aria-labelledby="title-damianidis" class="work-slide">
+<a aria-label="Apri il progetto Damianidis" class="project-slide-link" href="damianidis.html"></a>
+<img alt="Damianidis animated brand mockup" class="project-background" loading="lazy" src="assets/damianidis-mockups-05.gif"/>
+<video class="project-background damianidis-mobile"
+       muted loop playsinline preload="none" aria-hidden="true">
+    <source data-src="assets/preview-damianidis.mp4"
+            media="(max-width: 700px)" type="video/mp4">
+</video>
+<div class="project-details">
+<h2 id="title-damianidis">
+<a href="damianidis.html">
                         Damianidis
                     </a>
-                </h2>
-
-                <p class="project-field">branding / website</p>
-                <p class="project-year">2026</p>
-
-                <p class="project-visit">
+</h2>
+<p class="project-field">branding / website</p>
+<p class="project-year">2026</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://damianidis.co" target="_blank" rel="noopener noreferrer">damianidis.co</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://damianidis.co" rel="noopener noreferrer" target="_blank">damianidis.co</a>
+</p>
+<p class="project-direction">
                     creative direction: Esto Association
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Damianidis is an Athens-based furniture retailer
                     specialising in contemporary designer sofas.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-esto">
-            <video class="project-background" muted loop playsinline preload="none" aria-hidden="true">
-                <source data-src="assets/preview-esto.mp4" type="video/mp4">
-            </source></video>
-
-            <div class="project-details">
-                <h2 id="title-esto">Esto Association</h2>
-
-                <p class="project-field">
-                    <span class="field-desktop">
+</div>
+</section>
+<!-- ESTO ASSOCIATION -->
+<section aria-labelledby="title-esto" class="work-slide">
+<video aria-hidden="true" class="project-background" loop="" muted="" playsinline="" preload="none">
+<source data-src="assets/preview-esto.mp4" type="video/mp4"/>
+</video>
+<div class="project-details">
+<h2 id="title-esto">Esto Association</h2>
+<p class="project-field">
+<span class="field-desktop">
                         website interaction
                     </span>
-                    <span class="field-mobile">website</span>
-                </p>
-
-                <p class="project-year">2026</p>
-
-                <p class="project-visit">
+<span class="field-mobile">website</span>
+</p>
+<p class="project-year">2026</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://estoassociation.com" target="_blank" rel="noopener noreferrer">estoassociation.com</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://estoassociation.com" rel="noopener noreferrer" target="_blank">estoassociation.com</a>
+</p>
+<p class="project-direction">
                     creative direction: myself
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Website interactions I created for
                     Esto Association’s website.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-dounias">
-            <a class="project-slide-link" href="dounias.html" aria-label="Apri il progetto Dounias"></a>
-
-            <img class="project-background" src="assets/dounias/dounias-logo-2.gif" alt="Dounias project" loading="lazy" decoding="async">
-
-            <div class="project-details">
-                <h2 id="title-dounias">
-                    <a href="dounias.html">Dounias</a>
-                </h2>
-
-                <p class="project-field">branding / website</p>
-                <p class="project-year">2026</p>
-
-                <p class="project-visit">
+</div>
+</section>
+<!-- DOUNIAS -->
+<section aria-labelledby="title-dounias" class="work-slide">
+<a aria-label="Apri il progetto Dounias" class="project-slide-link" href="dounias.html"></a>
+<img alt="Dounias project" class="project-background" decoding="async" loading="lazy" src="assets/dounias/dounias-logo-2.gif"/>
+<div class="project-details">
+<h2 id="title-dounias">
+<a href="dounias.html">Dounias</a>
+</h2>
+<p class="project-field">branding / website</p>
+<p class="project-year">2026</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://www.instagram.com/douniasgreece/" target="_blank" rel="noopener noreferrer">douniasgreece</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://www.instagram.com/douniasgreece/" rel="noopener noreferrer" target="_blank">douniasgreece</a>
+</p>
+<p class="project-direction">
                     creative direction: Esto Association
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Dounias is a Greek-Palestinian non-profit organisation
                     founded by Carol to bring new colours, voices and
                     perspectives to the Palestinian community.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-disoriented-kitchen">
-            <a class="project-slide-link" href="disoriented-kitchen.html" aria-label="Apri il progetto Disoriented Kitchen"></a>
-
-            <picture>
-                <source media="(max-width: 700px)" srcset="assets/disoriented-kitchen/logo-mobile.gif">
-                <img class="project-background" src="assets/disoriented-kitchen/logo.gif" alt="Disoriented Kitchen animated logo" loading="lazy" decoding="async">
-            </source></picture>
-
-            <div class="project-details">
-                <h2 id="title-disoriented-kitchen">
-                    <a href="disoriented-kitchen.html">
+</div>
+</section>
+<!-- DISORIENTED KITCHEN -->
+<section aria-labelledby="title-disoriented-kitchen" class="work-slide">
+<a aria-label="Apri il progetto Disoriented Kitchen" class="project-slide-link" href="disoriented-kitchen.html"></a>
+<picture>
+<source media="(max-width: 700px)" srcset="assets/disoriented-kitchen/logo-mobile.gif"/>
+<img alt="Disoriented Kitchen animated logo" class="project-background" decoding="async" loading="lazy" src="assets/disoriented-kitchen/logo.gif"/>
+</picture>
+<div class="project-details">
+<h2 id="title-disoriented-kitchen">
+<a href="disoriented-kitchen.html">
                         Disoriented Kitchen
                     </a>
-                </h2>
-
-                <p class="project-field">Branding</p>
-                <p class="project-year">2025</p>
-
-                <p class="project-visit">visit: -</p>
-
-                <p class="project-direction">
+</h2>
+<p class="project-field">Branding</p>
+<p class="project-year">2025</p>
+<p class="project-visit">visit: -</p>
+<p class="project-direction">
                     creative direction: myself
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Disoriented Kitchen began as an idea shared by three
                     women based in Rome: a home kitchen concept bringing
                     together Egyptian, Greek and Italian influences.
                     The seasonings are olive oil, parsley and decolonisation.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-zavaii">
-            <a class="project-slide-link" href="zavaii.html" aria-label="Apri il progetto Zavaii"></a>
-
-            <img class="project-background" src="assets/zavaii-hero.png" alt="Zavaii surfboard lock" loading="lazy" decoding="async">
-
-            <div class="project-details">
-                <h2 id="title-zavaii">
-                    <a href="zavaii.html">Zavaii</a>
-                </h2>
-
-                <p class="project-field">
-                    <span class="field-desktop">
+</div>
+</section>
+<!-- ZAVAII -->
+<section aria-labelledby="title-zavaii" class="work-slide">
+<a aria-label="Apri il progetto Zavaii" class="project-slide-link" href="zavaii.html"></a>
+<picture>
+    <source media="(max-width: 700px)" srcset="assets/zavaii-mobile.webp">
+    <img
+        class="project-background"
+        src="assets/zavaii-hero-web.webp"
+        alt="Zavaii surfboard lock"
+        loading="lazy"
+        decoding="async"
+    >
+</picture>
+<div class="project-details">
+<h2 id="title-zavaii">
+<a href="zavaii.html">Zavaii</a>
+</h2>
+<p class="project-field">
+<span class="field-desktop">
                         branding / website / social media
                     </span>
-                    <span class="field-mobile">
+<span class="field-mobile">
                         branding / website
                     </span>
-                </p>
-
-                <p class="project-year">2024</p>
-
-                <p class="project-visit">
+</p>
+<p class="project-year">2024</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://zavaii.com" target="_blank" rel="noopener noreferrer">zavaii.com</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://zavaii.com" rel="noopener noreferrer" target="_blank">zavaii.com</a>
+</p>
+<p class="project-direction">
                     creative direction: Pausa Lab
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Zavaii is a special surfboard lock that hooks on
-                    and allows you to secure your board.<br>
+                    and allows you to secure your board.<br/>
                     We secured a sharp design.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-444">
-            <a class="project-slide-link" href="444-studios.html" aria-label="Apri il progetto 444 Studios"></a>
-
-            <video class="project-background" muted loop playsinline preload="none" aria-hidden="true">
-                <source data-src="assets/444-hero.mp4" type="video/mp4">
-            </source></video>
-
-            <div class="project-details">
-                <h2 id="title-444">
-                    <a href="444-studios.html">444 Studios</a>
-                </h2>
-
-                <p class="project-field">website</p>
-                <p class="project-year">2024</p>
-
-                <p class="project-visit">
+</div>
+</section>
+<!-- 444 STUDIOS -->
+<section aria-labelledby="title-444" class="work-slide">
+<a aria-label="Apri il progetto 444 Studios" class="project-slide-link" href="444-studios.html"></a>
+<video aria-hidden="true" class="project-background" loop="" muted="" playsinline="" preload="none">
+<source data-src="assets/444-hero.mp4" type="video/mp4"/>
+</video>
+<div class="project-details">
+<h2 id="title-444">
+<a href="444-studios.html">444 Studios</a>
+</h2>
+<p class="project-field">website</p>
+<p class="project-year">2024</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://444studios.art/" target="_blank" rel="noopener noreferrer">444studios.art</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://444studios.art/" rel="noopener noreferrer" target="_blank">444studios.art</a>
+</p>
+<p class="project-direction">
                     creative direction: Pausa Lab
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     444 is a creative collective of directors, designers,
-                    visual communicators,<br>
+                    visual communicators,<br/>
                     and producers with over a decade of experience.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-kaos">
-            <a class="project-slide-link" href="kaos-agency.html" aria-label="Apri il progetto Kaos Agency"></a>
-
-            <video class="project-background" muted loop playsinline preload="none" aria-hidden="true">
-                <source data-src="assets/kaos-hero.mp4" type="video/mp4">
-            </source></video>
-
-            <div class="project-details">
-                <h2 id="title-kaos">Kaos Agency</h2>
-
-                <p class="project-field">
-                    <span class="field-desktop">
+</div>
+</section>
+<!-- KAOS AGENCY -->
+<section aria-labelledby="title-kaos" class="work-slide">
+<a aria-label="Apri il progetto Kaos Agency" class="project-slide-link" href="kaos-agency.html"></a>
+<video aria-hidden="true" class="project-background" loop="" muted="" playsinline="" preload="none">
+<source data-src="assets/kaos-hero.mp4" type="video/mp4"/>
+</video>
+<div class="project-details">
+<h2 id="title-kaos">Kaos Agency</h2>
+<p class="project-field">
+<span class="field-desktop">
                         rebranding / social media / video editing
                     </span>
-                    <span class="field-mobile">rebranding</span>
-                </p>
-
-                <p class="project-year">2024</p>
-
-                <p class="project-visit">
+<span class="field-mobile">rebranding</span>
+</p>
+<p class="project-year">2024</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://kaosagency.com" target="_blank" rel="noopener noreferrer">kaosagency.com</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://kaosagency.com" rel="noopener noreferrer" target="_blank">kaosagency.com</a>
+</p>
+<p class="project-direction">
                     creative direction: Pausa Lab
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Kaos is a music agency based in Italy and Berlin,
                     with a focus on the underground electronic scene.
                 </p>
-            </div>
-        </section>
-
-        <section class="work-slide" aria-labelledby="title-oh">
-            <a class="project-slide-link" href="oh-no-contact.html" aria-label="Apri il progetto O/H — No Contact"></a>
-
-            <img class="project-background" src="assets/preview-oh-no.jpg" alt="O/H — No Contact artwork" loading="lazy" decoding="async">
-
-            <div class="project-details">
-                <h2 id="title-oh">O/H - No Contact</h2>
-
-                <p class="project-field">
-                    <span class="field-desktop">
+</div>
+</section>
+<!-- O/H — NO CONTACT -->
+<section aria-labelledby="title-oh" class="work-slide">
+<a aria-label="Apri il progetto O/H — No Contact" class="project-slide-link" href="oh-no-contact.html"></a>
+<img alt="O/H — No Contact artwork" class="project-background" decoding="async" loading="lazy" src="assets/preview-oh-no.jpg"/>
+<div class="project-details">
+<h2 id="title-oh">O/H - No Contact</h2>
+<p class="project-field">
+<span class="field-desktop">
                         layout / cover / poster
                     </span>
-                    <span class="field-mobile">
+<span class="field-mobile">
                         layout / artwork
                     </span>
-                </p>
-
-                <p class="project-year">2024</p>
-
-                <p class="project-visit">
+</p>
+<p class="project-year">2024</p>
+<p class="project-visit">
                     visit:
-                    <a href="https://kr3records.bandcamp.com/album/no-contact" target="_blank" rel="noopener noreferrer">bandcamp/no-contact</a>
-                </p>
-
-                <p class="project-direction">
+                    <a href="https://kr3records.bandcamp.com/album/no-contact" rel="noopener noreferrer" target="_blank">bandcamp/no-contact</a>
+</p>
+<p class="project-direction">
                     creative direction: Pausa Lab
                 </p>
-            </div>
-
-            <div class="project-caption">
-                <p>
+</div>
+<div class="project-caption">
+<p>
                     Together with Marco, I designed the covers and printed
                     materials for two vinyl releases by the electronic-industrial
                     punk project O/H, released on the independent label KR3.
                 </p>
-            </div>
-        </section>
-    </section></main>
+</div>
+</section>
+<section aria-label="Contact Francesco Chiariotti" class="contacts-section" id="contacts"><section aria-label="Contact details" class="info-contact-panel">
+<p class="contact-intro">
+                Brand design and UX/UI.<br/>
+                Based in Italy. Available worldwide.
+            </p>
+<h2 class="contact-heading">GET IN TOUCH</h2>
+<address class="info-contact">
+<ul class="contact-list">
+<li>
+<a class="contact-link" href="mailto:francesco.chiariotti@hotmail.it">
+<span class="contact-label">EMAIL</span>
+        francesco.chiariotti@hotmail.it
+    </a>
+</li>
+<li>
+<a class="contact-link" href="https://www.instagram.com/fran.cescano/" rel="noopener noreferrer" target="_blank">
+<span class="contact-label">INSTAGRAM</span>
+                            @fran.cescano
+                        </a>
+</li>
+<li>
+<a class="contact-link" href="https://www.linkedin.com/in/francesco-chiariotti/" rel="noopener noreferrer" target="_blank">
+<span class="contact-label">LINKEDIN</span>
+                            francesco-chiariotti
+                        </a>
+</li>
+</ul>
+</address>
+</section></section></main>
+<script defer="True" src="single-page.js"></script>
+<script onerror="window.__dismissPortfolioSplash()" src="assets/lens-build/lens.js" type="module"></script>
+<script src="assets/glass/one-page-glass.js" type="module"></script>
+<script type="module" src="assets/glass/contacts-glass.js"></script>
 
-    <div class="project-click-cursor" aria-hidden="true"><span>click here</span></div>
-<script data-desktop-click="true">
-(() => {
-    const layout = window.matchMedia('(min-width: 701px)');
-    const mouse = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const container = document.querySelector('.home-trail');
-    const hero = document.querySelector('.hero');
-    const cursor = document.querySelector('.project-click-cursor');
-    const root = document.documentElement;
-    if (!container || !hero || !cursor) return;
-
-    const sources = [
-        'assets/444-studios/444-STUDIO-1.png',
-        'assets/dounias/dounias-logo-2.gif',
-        'assets/preview-kaos.mp4',
-        'assets/preview-oh-no.jpg',
-        'assets/thierry-video-3.mp4',
-        'assets/zavaii-hero.png',
-        'assets/damianidis-mockups-05.gif',
-        'assets/preview-esto.mp4'
-    ];
-    const projects = [
-        {name: '444 Studios', href: '444-studios.html'},
-        {name: 'Dounias', href: 'dounias.html'},
-        {name: 'Kaos Agency', href: 'kaos-agency.html'},
-        {name: 'O/H — No Contact', href: 'oh-no-contact.html'},
-        {name: 'Thierry Colson', href: 'thierry-colson-split-test.html'},
-        {name: 'Zavaii', href: 'zavaii.html'},
-        {name: 'Damianidis', href: 'damianidis-split-test.html'},
-        {name: 'Esto Association', href: 'https://estoassociation.com/'}
-    ];
-    let items = [];
-    let index = -1;
-    let wanted = null;
-    let current = null;
-    let press = null;
-    let lastPoint = null;
-    let layer = 0;
-    const interactive = 'a,button,input,textarea,select,summary,[role="button"],[contenteditable="true"]';
-
-    function hideCursor() {
-        cursor.classList.remove('is-visible');
-        root.classList.remove('has-project-click-cursor');
-    }
-
-    function prepare() {
-        if (items.length || !layout.matches) return;
-        items = sources.map((src, projectIndex) => {
-            const box = document.createElement('div');
-            box.className = 'home-trail-item';
-            const isVideo = /\.mp4$/i.test(src);
-            const media = document.createElement(isVideo ? 'video' : 'img');
-            const link = document.createElement('a');
-            link.className = 'preview-project-link';
-            link.href = projects[projectIndex].href;
-            link.setAttribute('aria-label', `Go to the project: ${projects[projectIndex].name}`);
-            link.tabIndex = -1;
-            const label = document.createElement('span');
-            label.className = 'preview-project-label';
-            label.textContent = 'go to the project';
-            link.appendChild(label);
-            const item = {box, media, link, isVideo, ready: false, failed: false};
-            function ready() {
-                item.ready = true;
-                sizeLink(item);
-                if (wanted === item && layout.matches && !document.hidden) show(item);
-            }
-            if (isVideo) {
-                media.muted = true;
-                media.loop = true;
-                media.playsInline = true;
-                media.preload = 'metadata';
-                media.addEventListener('loadeddata', ready);
-            } else {
-                media.alt = '';
-                media.draggable = false;
-                media.addEventListener('load', ready);
-            }
-            media.addEventListener('error', () => {
-                item.failed = true;
-                if (wanted === item && layout.matches) next();
-            });
-            media.src = src;
-            box.appendChild(media);
-            box.appendChild(link);
-            container.appendChild(box);
-            return item;
-        });
-    }
-
-    function sizeLink(item) {
-        if (!layout.matches) return;
-        const width = item.box.clientWidth;
-        const height = item.box.clientHeight;
-        const sourceWidth = item.isVideo ? item.media.videoWidth : item.media.naturalWidth;
-        const sourceHeight = item.isVideo ? item.media.videoHeight : item.media.naturalHeight;
-        if (!width || !height || !sourceWidth || !sourceHeight) return;
-        const scale = Math.min(width / sourceWidth, height / sourceHeight);
-        item.link.style.width = `${sourceWidth * scale}px`;
-        item.link.style.height = `${sourceHeight * scale}px`;
-    }
-
-    function show(item) {
-        if (!layout.matches || wanted !== item) return;
-        if (current && current !== item) {
-            current.box.classList.remove('is-active');
-            current.link.tabIndex = -1;
-            if (current.isVideo) current.media.pause();
-        }
-        current = item;
-        current.box.style.zIndex = String(++layer);
-        current.box.classList.add('is-active');
-        current.link.tabIndex = 0;
-        sizeLink(current);
-        if (current.isVideo && !reduced.matches && !document.hidden) {
-            current.media.play().catch(() => {});
-        }
-    }
-
-    function next(point = lastPoint) {
-        if (!layout.matches) return;
-        prepare();
-        if (!items.some(item => !item.failed)) return;
-        do { index = (index + 1) % items.length; } while (items[index].failed);
-        wanted = items[index];
-        if (point) {
-            lastPoint = point;
-            const bounds = container.getBoundingClientRect();
-            wanted.box.style.left = `${point.x - bounds.left}px`;
-            wanted.box.style.top = `${point.y - bounds.top}px`;
-        }
-        if (wanted.isVideo && !wanted.ready) {
-            wanted.media.preload = 'auto';
-            wanted.media.load();
-        }
-        if (wanted.ready) show(wanted);
-    }
-
-    function updatePointer(event) {
-        if (!layout.matches || !mouse.matches || event.pointerType === 'touch' || event.target.closest(interactive)) {
-            hideCursor();
-            return;
-        }
-        cursor.style.left = `${event.clientX}px`;
-        cursor.style.top = `${event.clientY}px`;
-        cursor.classList.add('is-visible');
-        root.classList.add('has-project-click-cursor');
-    }
-
-    document.addEventListener('pointermove', updatePointer, {passive: true});
-    document.addEventListener('pointerover', updatePointer, {passive: true});
-    document.addEventListener('pointerdown', event => {
-        press = {x: event.clientX, y: event.clientY};
-    }, {passive: true});
-    document.addEventListener('click', event => {
-        if (!layout.matches || event.defaultPrevented || event.button !== 0 || event.target.closest(interactive)) return;
-        if (press && Math.hypot(event.clientX - press.x, event.clientY - press.y) > 8) return;
-        if (window.getSelection()?.toString()) return;
-        next({x: event.clientX, y: event.clientY});
-    });
-    document.addEventListener('keydown', event => {
-        if (!layout.matches || event.target.closest(interactive) || event.ctrlKey || event.metaKey || event.altKey) return;
-        if (event.key !== 'ArrowRight' && event.key !== ' ') return;
-        event.preventDefault(); hideCursor(); next();
-    });
-    document.documentElement.addEventListener('pointerleave', hideCursor);
-    window.addEventListener('blur', hideCursor);
-    function playback() {
-        if (!layout.matches) {
-            hideCursor(); wanted = null; current = null; index = -1;
-            items.forEach(item => {
-                item.box.classList.remove('is-active');
-                item.link.tabIndex = -1;
-                if (item.isVideo) item.media.pause();
-            });
-            return;
-        }
-        container.removeAttribute('aria-hidden');
-        prepare();
-        if (wanted?.ready && !document.hidden) show(wanted);
-        if (current?.isVideo) {
-            if (document.hidden || reduced.matches) current.media.pause();
-            else current.media.play().catch(() => {});
-        }
-        if (document.hidden) hideCursor();
-    }
-    layout.addEventListener('change', playback);
-    mouse.addEventListener('change', hideCursor);
-    reduced.addEventListener('change', playback);
-    document.addEventListener('visibilitychange', playback);
-    window.addEventListener('pageshow', playback);
-    window.addEventListener('resize', () => items.forEach(sizeLink));
-    window.addEventListener('pagehide', () => {
-        hideCursor();
-        items.forEach(item => { if (item.isVideo) item.media.pause(); });
-    });
-    playback();
-})();
-
-</script>
-<script data-home-scroll="true">
-(() => {
-  const query = matchMedia('(max-width: 700px)');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const section = document.querySelector('.mobile-home-work');
-  const slides = [...section.querySelectorAll('.work-slide')];
-  const visible = new Map();
-  let active = null;
-  function load(video) {
-    if (!video || video.dataset.loaded === 'true') return;
-    const source = video.querySelector('source[data-src]');
-    if (!source) return;
-    source.src = source.dataset.src;
-    video.dataset.loaded = 'true'; video.load();
-  }
-  function playback() {
-    slides.forEach(slide => {
-      const video = slide.querySelector('video');
-      if (!video) return;
-      if (query.matches && slide === active && !document.hidden && !reduced.matches) {
-        load(video); video.play().catch(() => {});
-      } else video.pause();
-    });
-  }
-  function select() {
-    active = null;
-    let largest = 0;
-    for (const [slide,ratio] of visible) {
-      if (ratio > largest) { active = slide; largest = ratio; }
-    }
-    slides.forEach(slide => slide.classList.toggle('is-active', query.matches && slide === active));
-    playback();
-  }
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => visible.set(entry.target,entry.isIntersecting ? entry.intersectionRatio : 0));
-    select();
-  }, {threshold: [0,.1,.25,.5,.75,1]});
-  slides.forEach(slide => observer.observe(slide));
-  const preload = new IntersectionObserver(entries => {
-    if (!query.matches) return;
-    entries.forEach(entry => {
-      if (entry.isIntersecting) load(entry.target.querySelector('video'));
-    });
-  }, {rootMargin:'150px 0px'});
-  slides.forEach(slide => preload.observe(slide));
-  query.addEventListener('change', () => {
-    visible.clear();
-    slides.forEach(slide => { observer.unobserve(slide); observer.observe(slide); preload.unobserve(slide); preload.observe(slide); });
-    select();
-  });
-  reduced.addEventListener('change', playback);
-  document.addEventListener('visibilitychange', playback);
-  window.addEventListener('pagehide', () => slides.forEach(slide => slide.querySelectorAll('video').forEach(video => video.pause())));
-  window.addEventListener('pageshow', playback);
-  document.querySelector('.zombiescroll').addEventListener('click', event => {
-    if (!query.matches) return;
-    event.preventDefault();
-    const top = section.getBoundingClientRect().top + scrollY - 52;
-    window.scrollTo({top, behavior: reduced.matches ? 'instant' : 'smooth'});
-  });
-})();
-</script></body>
+</body>
 </html>

@@ -1,0 +1,57 @@
+/* Contacts layout v6: larger glass, more room below the contact panel. */
+#contacts {
+ position:relative; display:flex; flex-direction:column; align-items:stretch;
+ justify-content:flex-start; gap:20px; min-height:100svh;
+ padding:clamp(40px,5svh,56px) 16px 112px;
+ overflow:hidden; background:#000; color:#fff;
+}
+#contacts .contacts-glass {
+ position:relative; z-index:0; inset:auto; transform:none;
+ align-self:center; flex:0 0 auto;
+ width:min(52svh,60vw,560px); aspect-ratio:1; margin:0; pointer-events:none;
+}
+#contacts-glass { display:block; width:100%; height:100%; }
+#contacts .contacts-glass-fallback {
+ display:none; position:absolute; inset:10%; width:80%; height:80%; padding:10%;
+ background:#141414; border:1px solid rgb(255 255 255 / 25%); border-radius:22%;
+}
+#contacts .contacts-glass.has-fallback #contacts-glass { display:none; }
+#contacts .contacts-glass.has-fallback .contacts-glass-fallback { display:block; }
+#contacts .info-contact-panel {
+ position:relative; z-index:1; order:1; align-self:stretch; justify-self:auto;
+ width:100%; max-width:none; margin:auto 0 0; padding:0;
+ border:0; border-radius:0; box-shadow:none; background:transparent;
+ color:#fff; text-align:left; text-shadow:none;
+}
+#contacts .contact-intro {
+ margin:0 0 28px; font-size:17px; font-weight:400; line-height:1.4;
+ letter-spacing:-0.6px; text-align:center;
+}
+#contacts .contact-heading {
+ margin:0 0 16px; font-size:12px; font-weight:400; line-height:1.2;
+ letter-spacing:-0.3px; text-align:left;
+}
+#contacts .info-contact { margin:0; font-style:normal; }
+#contacts .contact-list {
+ display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1.15fr) minmax(0,0.75fr);
+ gap:24px; margin:0; padding:0; list-style:none;
+}
+#contacts .contact-list li { min-width:0; }
+#contacts .contact-link {
+ display:block; width:fit-content; max-width:100%; margin:0;
+ font-size:14px; font-weight:400; line-height:1.4; letter-spacing:-0.4px;
+ text-align:left; overflow-wrap:anywhere;
+}
+#contacts .contact-label {
+ display:block; margin-bottom:4px; font-size:10px; font-weight:400;
+ line-height:1.2; letter-spacing:-0.3px;
+}
+#contacts .contact-glass-credit { display:none; }
+@media (max-width:700px) {
+ #contacts { gap:24px; padding:72px 16px 124px; }
+ #contacts .contacts-glass { width:min(82vw,48svh,440px); }
+ #contacts .info-contact-panel { margin-top:auto; }
+ #contacts .contact-intro { font-size:14px; letter-spacing:-0.3px; margin-bottom:28px; }
+ #contacts .contact-list { grid-template-columns:minmax(0,1fr); gap:20px; }
+ #contacts .contact-link { font-size:14px; }
+}

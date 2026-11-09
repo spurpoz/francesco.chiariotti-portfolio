@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Info — Francesco Chiariotti</title>
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <meta
         name="description"
@@ -36,8 +37,8 @@
             font-weight: 400;
             letter-spacing: -0.3px;
 
-            color: #000000;
-            background: #fff;
+            color: #ffffff;
+            background: #000;
         }
 
         a {
@@ -56,10 +57,9 @@
             position: fixed;
             inset: 0;
             z-index: 100;
-
             pointer-events: none;
             line-height: 1;
-            color: #050505;
+            color: #fff;
         }
 
         .corners a,
@@ -94,6 +94,8 @@
         /* STRUTTURA */
 
         .info-page {
+            position: relative;
+            z-index: 1;
             min-height: 100svh;
             padding: 100px 16px 80px;
 
@@ -115,10 +117,10 @@
         .info-content p {
             margin: 0 0 28px;
 
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 1.25;
-            letter-spacing: -0.8px;
+            font-size: 17px;
+            font-weight: 100;
+            line-height: 1.5;
+            letter-spacing: -0.6px;
         }
 
         .info-content p:last-child {
@@ -133,8 +135,8 @@
             padding: 28px 20px 30px;
 
             border-radius: 20px;
-            background: #D9D9D9;
-            color: #000;
+            background: transparent;
+            color: #fff;
         }
 
         .contact-intro {
@@ -277,6 +279,449 @@
     }
 }
 
+        .info-background { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        #info-glass { position: absolute; width: min(85vw, 85vh, 800px); height: min(85vw, 85vh, 800px); left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: 1; }
+        .info-copy { text-shadow: 0 1px 10px rgb(0 0 0 / 70%); }
+        
+/* BARRA CONTROLLI */
+#glass-controls {
+  position: fixed;
+
+  left: 50%;
+
+  /* Posizione sopra il cerchio. */
+  top: max(
+    16px,
+    calc(50% - min(42.5vw, 42.5vh, 400px) - 52px)
+  );
+  
+  transform: translateX(-50%);
+
+  z-index: 101;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 4px;
+
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 999px;
+
+  background: rgb(0 0 0 / 65%);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  pointer-events: auto;
+}
+
+/* Gruppo melody / bass, senza un secondo bordo. */
+#glass-touch-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Stile condiviso dei tre pulsanti. */
+#glass-touch-switch button,
+#glass-sound {
+  appearance: none;
+  -webkit-appearance: none;
+
+  position: static;
+  transform: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  min-width: 76px;
+  min-height: 36px;
+
+  margin: 0;
+  padding: 8px 14px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+  color: rgb(255 255 255 / 60%);
+
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+  touch-action: manipulation;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+/* Separatore tra scelta del timbro e accompagnamento. */
+#glass-sound {
+  margin-left: 4px;
+}
+
+#glass-touch-switch {
+  padding-right: 8px;
+  border-right: 1px solid rgb(255 255 255 / 20%);
+}
+
+/* Stato selezionato / accompagnamento attivo. */
+#glass-touch-switch button[aria-pressed="true"],
+#glass-sound[aria-pressed="true"] {
+  background: #fff;
+  color: #000;
+}
+
+@media (hover: hover) {
+  #glass-touch-switch button:hover,
+  #glass-sound:hover {
+    background: rgb(255 255 255 / 14%);
+    color: #fff;
+  }
+
+  #glass-touch-switch button[aria-pressed="true"]:hover,
+  #glass-sound[aria-pressed="true"]:hover {
+    background: #fff;
+    color: #000;
+  }
+}
+
+#glass-touch-switch button:focus-visible,
+#glass-sound:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+#glass-sound:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* Mantiene il comportamento di hidden. */
+#glass-touch-switch[hidden],
+#glass-sound[hidden] {
+  display: none;
+}
+
+/* Evita una pillola vuota durante il caricamento
+   o quando l'effetto non è disponibile. */
+#glass-controls:not(:has(button:not([hidden]))) {
+  display: none;
+}
+
+/* CREDITI */
+#glass-credit {
+  position: fixed;
+
+  left:50%;
+  right: auto;
+  transform: translateX(-50%);
+  bottom: 46px;
+  bottom: max(46px, env(safe-area-inset-bottom));
+
+  z-index: 101;
+
+  width: max-content;
+  max-width: calc(100vw - 32px);
+
+  text-align: center;
+
+  color: rgb(255 255 255 / 45%);
+
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: right;
+
+  pointer-events: auto;
+}
+
+#glass-credit a {
+  color: inherit;
+
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 25%);
+  text-underline-offset: 3px;
+}
+
+#glass-credit a:hover {
+  color: #fff;
+}
+
+/* Piccoli schermi. */
+@media (max-width: 480px) {
+  #glass-touch-switch button,
+  #glass-sound {
+    min-width: 64px;
+    padding: 8px 10px;
+  }
+
+  #glass-credit {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #glass-touch-switch button,
+  #glass-sound {
+    transition: none;
+  }
+}
+
+/* =========================================
+   INFO: BIOGRAFIA A SINISTRA, CONTATTI A DESTRA
+   ========================================= */
+
+.info-page {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 680px)
+        minmax(0, 340px);
+
+    justify-content: space-between;
+    align-content: center;
+    align-items: start;
+
+    column-gap: 64px;
+    row-gap: 48px;
+
+    min-height: 100svh;
+
+    /* Padding simmetrico per centrare il gruppo. */
+    padding: 100px 16px;
+}
+
+/* BIOGRAFIA */
+
+.info-copy {
+    width: 100%;
+    max-width: 680px;
+
+    margin: 0;
+
+    text-align: left;
+}
+
+/* Stessa tipografia per biografia e presentazione. */
+.info-content p,
+.contact-intro {
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 100;
+    line-height: 1.5;
+    letter-spacing: -0.6px;
+}
+
+.info-content p {
+    margin: 0 0 28px;
+}
+
+.info-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* COLONNA CONTATTI */
+
+.info-contact-panel {
+    width: 100%;
+    max-width: 340px;
+
+    justify-self: end;
+
+    margin: 0;
+    padding: 0;
+
+    border-radius: 0;
+    background: transparent;
+
+    color: #fff;
+    text-align: right;
+
+    text-shadow: 0 1px 10px rgb(0 0 0 / 70%);
+}
+
+.contact-intro {
+    margin: 0 0 36px;
+}
+
+.contact-heading {
+    margin: 0 0 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+}
+
+.info-contact {
+    margin: 0;
+    font-style: normal;
+}
+
+/* Tutti i contatti uno sotto l'altro. */
+.contact-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 24px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.contact-list li {
+    min-width: 0;
+}
+
+.contact-link {
+    display: block;
+
+    width: fit-content;
+    max-width: 100%;
+
+    font-size: 17px;
+    font-weight: 100;
+    line-height: 1.5;
+    letter-spacing: -0.6px;
+    margin-left: auto;
+
+    overflow-wrap: anywhere;
+}
+
+.contact-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+}
+
+/* TABLET E MOBILE:
+   torna a una colonna, senza sovrapporre i testi. */
+@media (max-width: 1000px) {
+    .info-page {
+        grid-template-columns: minmax(0, 1fr);
+
+        align-content: start;
+        justify-content: stretch;
+
+        gap: 56px;
+
+        padding: 140px 16px 120px;
+    }
+
+    .info-copy {
+        max-width: 680px;
+        margin: 0;
+    }
+
+    .info-contact-panel {
+        justify-self: start;
+
+        max-width: 680px;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Lascia andare a capo il testo in base allo spazio. */
+    .info-content br {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    #glass-controls {
+        top: 10vh;
+    }
+
+    #info-glass {
+        top: calc(10vh + 46px + 10px);
+
+        /* Mantiene il centro orizzontale,
+           ma rimuove lo spostamento verticale precedente. */
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 700px) {
+    .info-page {
+
+        padding-top: calc(
+            10vh + 46px + 10px
+            + min(85vw, 85vh, 800px)
+            + 10px
+        );
+
+        align-content: start;
+    }
+
+    .info-copy {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        text-align: center;
+    }
+
+    .info-content p {
+        margin: 0 0 24px;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: -0.3px;
+
+        text-align: center;
+    }
+
+    .info-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    .info-content br {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .info-page {
+        padding-top: var(--info-copy-top, 100svh);
+        align-content: start;
+    }
+
+    .info-copy {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+
+    .info-content p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: -0.3px;
+        text-align: center;
+    }
+}
+
+
     </style>
 
     <link rel="stylesheet" href="mobile-menu.css">
@@ -286,52 +731,17 @@
 
 <body>
 
-    <svg
-    width="0"
-    height="0"
-    style="position: absolute; pointer-events: none;"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-    focusable="false"
->
-    <defs>
-        <filter
-            id="water-motion"
-            x="-10%"
-            y="-10%"
-            width="120%"
-            height="120%"
-            color-interpolation-filters="sRGB"
-        >
-            <feTurbulence
-                id="water-noise"
-                type="fractalNoise"
-                baseFrequency="0.012 0.022"
-                numOctaves="2"
-                seed="8"
-                result="noise"
-            />
 
-            <feDisplacementMap
-                id="water-displacement"
-                in="SourceGraphic"
-                in2="noise"
-                scale="10"
-                xChannelSelector="R"
-                yChannelSelector="G"
-            />
-        </filter>
-    </defs>
-</svg>
 
-    <div class="info-background" aria-hidden="true"></div>
+    <div class="info-background" aria-hidden="true"><canvas id="info-glass"></canvas></div>
+    <button id="glass-sound" type="button" aria-pressed="false" hidden>sound on</button>
 
     <nav class="corners" aria-label="Main navigation">
         <a class="corner-name" href="index.html">
             Francesco Chiariotti
         </a>
 
-        <a class="corner-work" href="work-test.html">
+        <a class="corner-work" href="work.html">
             work
         </a>
 
@@ -367,7 +777,7 @@
 >
     <div class="mobile-menu-content">
         <nav class="mobile-menu-links" aria-label="Mobile navigation">
-            <a href="work-test.html">work</a>
+            <a href="work.html">work</a>
             <a href="info.html" aria-current="page">info</a>
         </nav>
     </div>
@@ -384,14 +794,14 @@
             <div class="info-content">
                 <p>
                     Always fascinated by colors, shapes, and sounds,
-                    I mix my passions with a desire to swim out into
-                    the open sea, often finding myself holding my
+                    I mix my passions<br> with a desire to swim out into
+                    the open sea, often finding myself<br> holding my
                     breath in the depths of a project.
                 </p>
 
                 <p>
                     I work across branding and UI, with a Swiss grid
-                    approach and a tendency towards bold, vibrant colors.
+                    approach and a<br> tendency towards bold, vibrant colors.
                 </p>
 
                 <p>
@@ -417,14 +827,14 @@
             <address class="info-contact">
                 <ul class="contact-list">
                     <li>
-                        <a
-                            class="contact-link"
-                            href="mailto:francesco.chiariotti@hotmail.it"
-                        >
-                            <span class="contact-label">EMAIL</span>
-                            francesco.chiariotti@hotmail.it
-                        </a>
-                    </li>
+    <a
+        class="contact-link"
+        href="mailto:francesco.chiariotti@hotmail.it"
+    >
+        <span class="contact-label">EMAIL</span>
+        francesco.chiariotti@hotmail.it
+    </a>
+</li>
 
                     <li>
                         <a
@@ -455,57 +865,46 @@
 
     </main>
 
-    <script>
+    <script type="module" src="assets/glass/info-glass.js"></script>
+
+<script>
 (() => {
-    const noise = document.querySelector("#water-noise");
-    const displacement = document.querySelector("#water-displacement");
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
+    const glass = document.querySelector('#info-glass');
+    const page = document.querySelector('.info-page');
+    const mobile = window.matchMedia('(max-width: 700px)');
 
-    let frame = null;
-    let previousTime = null;
-    let elapsed = 0;
+    if (!glass || !page) return;
 
-    function animate(time) {
-        if (previousTime !== null) {
-            elapsed += Math.min(time - previousTime, 50) / 1000;
+    function positionInfoText() {
+        if (!mobile.matches) {
+            page.style.removeProperty('--info-copy-top');
+            return;
         }
 
-        previousTime = time;
+        const glassBottom = glass.getBoundingClientRect().bottom;
 
-        const frequencyX =
-            0.012 + Math.sin(elapsed * 0.35) * 0.0015;
+        const pageDocumentTop =
+            page.getBoundingClientRect().top + window.scrollY;
 
-        const frequencyY =
-            0.022 + Math.cos(elapsed * 0.28) * 0.002;
-
-        const strength =
-            10 + Math.sin(elapsed * 0.45) * 2;
-
-        noise.setAttribute(
-            "baseFrequency",
-            `${frequencyX.toFixed(5)} ${frequencyY.toFixed(5)}`
+        const paddingTop = Math.max(
+            0,
+            glassBottom + 10 - pageDocumentTop
         );
 
-        displacement.setAttribute("scale", strength.toFixed(2));
-
-        frame = requestAnimationFrame(animate);
+        page.style.setProperty(
+            '--info-copy-top',
+            `${paddingTop}px`
+        );
     }
 
-    function updatePlayback() {
-        cancelAnimationFrame(frame);
-        previousTime = null;
+    const observer = new ResizeObserver(positionInfoText);
+    observer.observe(glass);
 
-        if (!document.hidden && !reducedMotion.matches) {
-            frame = requestAnimationFrame(animate);
-        }
-    }
+    window.addEventListener('resize', positionInfoText);
+    window.addEventListener('load', positionInfoText);
+    mobile.addEventListener('change', positionInfoText);
 
-    document.addEventListener("visibilitychange", updatePlayback);
-    reducedMotion.addEventListener("change", updatePlayback);
-
-    updatePlayback();
+    positionInfoText();
 })();
 </script>
 

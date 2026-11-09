@@ -1,0 +1,260 @@
+/* Single-page integration. Original hero and project styles remain in index.html. */
+.work-slides { scroll-snap-type: y mandatory; }
+.corner-info, .corner-year { transform: none; }
+a:focus-visible { outline: 1px solid currentColor; outline-offset: 5px; }
+.about-section, .contacts-section {
+    position: relative;
+    min-height: 100svh;
+    width: 100%;
+    scroll-snap-align: start;
+    isolation: isolate;
+    background: #000;
+    color: #fff;
+}
+.about-section { display: grid; align-items: center; padding: 110px 16px 90px; }
+.info-background { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+#info-glass {
+    position: absolute;
+    width: min(85vw, 85vh, 800px);
+    height: min(85vw, 85vh, 800px);
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.about-layout { position: relative; z-index: 1; display: grid;
+    grid-template-columns: minmax(0, 680px) minmax(0, 340px);
+    justify-content: space-between; align-items: start; gap: 64px;
+}
+.info-copy { width: 100%; margin: 0; text-shadow: 0 1px 10px #000b; }
+.info-content p, .about-intro, .contact-intro {
+    font-size: 17px; font-weight: 400; line-height: 1.5; letter-spacing: -.6px;
+}
+.info-content p { margin: 0 0 28px; }
+.info-content p:last-child { margin-bottom: 0; }
+.about-intro { margin: 0; text-align: right; text-shadow: 0 1px 10px #000b; }
+#glass-credit {
+    position: absolute; z-index: 5; left: 50%; bottom: 46px;
+    transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px);
+    font-size: 11px; line-height: 1.5; color: #ffffff73; text-align: center;
+}
+#glass-credit a { text-decoration: underline; text-underline-offset: 3px; }
+#glass-credit a:hover { color: #fff; }
+.contacts-section { display: grid; align-items: center; padding: 100px 16px; }
+.info-contact-panel { width: 100%; max-width: 340px; justify-self: end; margin: 0; padding: 0; text-align: right; }
+.contact-intro { margin: 0 0 36px; }
+.contact-heading { margin: 0 0 20px; font-size: 12px; font-weight: 400; line-height: 1.2; }
+.info-contact { margin: 0; font-style: normal; }
+.contact-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin: 0; padding: 0; list-style: none; }
+.contact-list li { min-width: 0; }
+.contact-link { display: block; width: fit-content; max-width: 100%; margin-left: auto;
+    font-size: 17px; font-weight: 400; line-height: 1.5; letter-spacing: -.6px; overflow-wrap: anywhere; }
+.contact-label { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 400; line-height: 1.2; letter-spacing: -.3px; }
+/* BARRA CONTROLLI */
+#glass-controls {
+  position: absolute;
+
+  left: 50%;
+
+  /* Posizione sopra il cerchio. */
+  top: max(
+    16px,
+    calc(50% - min(42.5vw, 42.5vh, 400px) - 52px)
+  );
+  
+  transform: translateX(-50%);
+
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 4px;
+
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 999px;
+
+  background: rgb(0 0 0 / 65%);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  pointer-events: auto;
+}
+
+/* Gruppo melody / bass, senza un secondo bordo. */
+#glass-touch-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Stile condiviso dei tre pulsanti. */
+#glass-touch-switch button,
+#glass-sound {
+  appearance: none;
+  -webkit-appearance: none;
+
+  position: static;
+  transform: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  min-width: 76px;
+  min-height: 36px;
+
+  margin: 0;
+  padding: 8px 14px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+  color: rgb(255 255 255 / 60%);
+
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+  touch-action: manipulation;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+/* Separatore tra scelta del timbro e accompagnamento. */
+#glass-sound {
+  margin-left: 4px;
+}
+
+#glass-touch-switch {
+  padding-right: 8px;
+  border-right: 1px solid rgb(255 255 255 / 20%);
+}
+
+/* Stato selezionato / accompagnamento attivo. */
+#glass-touch-switch button[aria-pressed="true"],
+#glass-sound[aria-pressed="true"] {
+  background: #fff;
+  color: #000;
+}
+
+@media (hover: hover) {
+  #glass-touch-switch button:hover,
+  #glass-sound:hover {
+    background: rgb(255 255 255 / 14%);
+    color: #fff;
+  }
+
+  #glass-touch-switch button[aria-pressed="true"]:hover,
+  #glass-sound[aria-pressed="true"]:hover {
+    background: #fff;
+    color: #000;
+  }
+}
+
+#glass-touch-switch button:focus-visible,
+#glass-sound:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+#glass-sound:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* Mantiene il comportamento di hidden. */
+#glass-touch-switch[hidden],
+#glass-sound[hidden] {
+  display: none;
+}
+
+/* Evita una pillola vuota durante il caricamento
+   o quando l'effetto non è disponibile. */
+#glass-controls:not(:has(button:not([hidden]))) {
+  display: none;
+}
+
+
+/* Tablet: keep the copy readable without shrinking the contact column. */
+@media (min-width: 701px) and (max-width: 1000px) {
+    .about-layout { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .info-copy { max-width: 680px; }
+    .about-intro { justify-self: end; }
+}
+@media (max-width: 700px) {
+    .about-section { display: flex; flex-direction: column; align-items: stretch;
+        padding: max(80px, 10svh) 16px 64px; }
+    #glass-controls { position: relative; top: auto; left: auto; transform: none;
+        align-self: center; flex: 0 0 auto; order: 0; margin: 0 0 10px; }
+    .info-background { position: relative; inset: auto; flex: 0 0 auto; order: 1;
+        height: min(85vw, 85vh, 800px); overflow: hidden; }
+    #info-glass { position: relative; display: block; top: auto; left: auto;
+        transform: none; margin: 0 auto; }
+    .about-layout { display: grid; grid-template-columns: minmax(0, 1fr);
+        order: 2; gap: 36px; margin-top: 10px; }
+    .info-copy, .info-content p { text-align: center; }
+    .info-content p { font-size: 14px; line-height: 1.5; letter-spacing: -.3px; margin-bottom: 24px; }
+    .info-content p:last-child { margin-bottom: 0; }
+    .info-content br { display: none; }
+    .about-intro { text-align: center; font-size: 14px; }
+    #glass-credit { position: relative; order: 3; left: auto; bottom: auto;
+        transform: none; align-self: center; margin-top: 36px; max-width: 100%; font-size: 10px; }
+    .contacts-section { padding: 100px 16px; }
+    .contact-intro, .contact-link { font-size: 14px; letter-spacing: -.3px; }
+}
+@media (max-width: 480px) {
+    #glass-touch-switch button, #glass-sound { min-width: 64px; padding: 8px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #glass-touch-switch button, #glass-sound { transition: none; }
+}
+
+#glass-controls[hidden] { display: none; }
+.about-section.glass-unavailable .info-background { display: none; }
+
+/* Restore the original index.html native scroll-snap behavior. */
+.work-slides {
+    scroll-snap-type: y mandatory;
+    overscroll-behavior-y: contain;
+}
+.work-slides > .home-intro,
+.work-slides > .about-section,
+.work-slides > .work-slide,
+.work-slides > .contacts-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+@media (max-width: 700px) {
+    .work-slide .project-caption p {
+        font-family: "Inter Tight", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: -0.3px;
+        color: #fff;
+        text-align: center;
+    }
+}
+
+.work-slide .damianidis-mobile {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .work-slide .damianidis-desktop {
+        display: none;
+    }
+
+    .work-slide .damianidis-mobile {
+        display: block;
+    }
+}
